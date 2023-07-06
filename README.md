@@ -2,4 +2,4 @@
 
 Project 6 from JavaScript React developper path at OpenClassrooms 
 
-https://fischkevin.github.io/DA-JS-Projet03/
+https://fischkevin.github.io/DA-JS-Projet06/
