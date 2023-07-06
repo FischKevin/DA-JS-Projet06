@@ -1,6 +1,5 @@
-# Base de code du projet P6 - Parcours Front-end
+# DA-JS-Projet06
 
-## Démarrer le projet
+Project 6 from JavaScript React developper path at OpenClassrooms 
 
-Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.
-
+https://fischkevin.github.io/DA-JS-Projet03/
