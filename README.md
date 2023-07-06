@@ -1,2 +1,2 @@
 # DA-JS-Projet06
-Sixth project from JavaScript React Developper path
+Project 6 from JavaScript React developper path at OpenClassrooms.
