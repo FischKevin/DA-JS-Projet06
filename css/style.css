@@ -37,6 +37,7 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    overflow: hidden; 
 }
 
 .photographer_section article h2 {
@@ -47,4 +48,7 @@ h1 {
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    /* transform: scale(1.5); */
 }
