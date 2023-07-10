@@ -9,6 +9,7 @@ function photographerFactory(data) {
     wrapper.classList.add("wrapper");
     const img = document.createElement("img");
     img.setAttribute("src", picture);
+    img.setAttribute("alt", `Portrait de ${name}`);
     wrapper.appendChild(img);
     const h2 = document.createElement("h2");
     h2.textContent = name;
