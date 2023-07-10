@@ -2,3 +2,5 @@ node_modules/
 package.json
 .eslintrc.json
 package-lock.json
+.prettierignore
+.prettierrc.json
