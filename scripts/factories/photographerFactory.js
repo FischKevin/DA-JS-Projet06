@@ -16,7 +16,7 @@ function photographerFactory(data) {
     const h4 = document.createElement('h4');
     h4.textContent = tagline;
     const h5 = document.createElement('h5');
-    h5.textContent = price;
+    h5.textContent = `${price}€/jour`;
     article.appendChild(img);
     article.appendChild(h2);
     article.appendChild(h3);
