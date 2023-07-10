@@ -37,6 +37,11 @@ h2, h3, h4, h5 {
     margin-top: 100px;
 }
 
+.photographer_section .wrapper {
+    overflow: hidden;
+    border-radius: 100%;
+}
+
 .photographer_section article {
     justify-self: center;
     display: flex;
@@ -74,5 +79,5 @@ h2, h3, h4, h5 {
     width: 200px;
     object-fit: cover;
     border-radius: 50%;
-    /* transform: scale(1.5); */
+    transform: scale(1.18);
 }
