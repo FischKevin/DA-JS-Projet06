@@ -1,13 +1,13 @@
 /* exported photographerFactory */
 function photographerFactory(data) {
-  const { name, portrait, city, country, tagline, price } = data;
+  const { name, portrait, city, country, tagline, price, id } = data;
 
   const picture = `./assets/images/photographers/00-Portraits/${portrait}`;
 
   function getUserCardDOM() {
     const article = document.createElement("article");
     const pictureLink = document.createElement("a");
-    pictureLink.setAttribute("href", "#");
+    pictureLink.setAttribute("href", `./photographer.html?id=${id}`);
     pictureLink.setAttribute("role", "link");
     const wrapper = document.createElement("div");
     wrapper.classList.add("wrapper");
@@ -38,6 +38,7 @@ function photographerFactory(data) {
     country,
     tagline,
     price,
+    id,
     getUserCardDOM,
   };
 }
