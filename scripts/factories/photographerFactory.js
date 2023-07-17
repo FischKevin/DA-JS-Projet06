@@ -12,6 +12,7 @@ function photographerFactory(data) {
     const pictureLink = document.createElement("a");
     pictureLink.setAttribute("href", `./photographer.html?id=${id}`);
     pictureLink.setAttribute("role", "link");
+    pictureLink.setAttribute("aria-label", `${name}`)
     // creation of a wrapper around the picture to resize picture
     const wrapper = document.createElement("div");
     wrapper.classList.add("wrapper");
