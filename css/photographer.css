@@ -10,7 +10,7 @@
   width: 90%;
   position: absolute;
   left: 50%;
-  top: 25%;
+  top: 250px;
   transform: translate(-50%,-50%);
 }
 
@@ -28,23 +28,24 @@
   position: relative;
   top: -160px;
   margin-left: 30px;
+  width: 40%;
 }
 
 .photograph-header h2 {
   color: #D3573C;
-  font-size: 64px;
+  font-size: clamp(32px, 4vw, 64px);
   font-weight: 400;
 }
 
 .photograph-header h3 {
   color: #901C1C;
-  font-size: 24px;
+  font-size: clamp(12px, 2vw, 24px);
   font-weight: 400;
 }
 
 .photograph-header h4 {
   color: #525252;
-  font-size: 18px;
+  font-size: clamp(9px, 1.5vw, 18px);
   font-weight: 400;
   margin-top: 20px;
 }
