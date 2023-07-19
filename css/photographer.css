@@ -16,6 +16,13 @@
   border-radius: 50%;
 }
 
+.price-and-Like {
+  background-color: #DB8876;
+  font-size: 24px;
+  font-weight: 500;
+  border-radius: 5px 5px 0 0;
+}
+
 .contact_button {
   font-size: 20px;
   font-weight: bold;

@@ -8,11 +8,9 @@ async function getPhotographer() {
   return fetch('./data/photographers.json')
     .then((res) => res.json())
     .then((data) => {
-      console.log('ID récupéré :', photographerId);
       const photographer = data.photographers.find(
         (p) => p.id === parseInt(photographerId)
       );
-      console.log('Photographe trouvé :', photographer);
       return {
         photographer: photographer,
       };
@@ -31,8 +29,6 @@ function getUserHeaderDOM(name, city, country, tagline, picture) {
   const h2 = document.createElement('h2');
   h2.textContent = name;
   container.appendChild(h2);
-  console.log('h2:', h2.textContent);
-  console.log('name:', name);
   // creation of the city + country block
   const h3 = document.createElement('h3');
   h3.textContent = `${city}, ${country}`;
@@ -43,25 +39,27 @@ function getUserHeaderDOM(name, city, country, tagline, picture) {
   container.appendChild(h4);
   // addition of previous elements in photographHeader block
   photographHeader.appendChild(container);
-
-  console.log('Retour de container', container);
   return container;
 }
 
 // function to create price and like element of photograper page
 function getUserPriceLikeDOM(price) {
   const photographPriceLike = document.createElement('div');
+  photographPriceLike.className = 'price-and-Like';
+  // creation of the like block
+  const like = document.createElement('h5');
+  like.textContent = 'nbLike + ♥';
   // creation of the price block
   const h5 = document.createElement('h5');
   h5.textContent = `${price}€/jour`;
   // addition of previous elements in photographPriceLike block
+  photographPriceLike.appendChild(like);
   photographPriceLike.appendChild(h5);
   return photographPriceLike;
 }
 
 async function displayData(photographer) {
   const photographHeader = document.querySelector('.photograph-header');
-  console.log('Donnée récupérée dans displayData:', photographer);
   const photographerModel = photographerFactory(photographer.photographer);
   const userHeaderDOM = getUserHeaderDOM(
     photographerModel.name,
@@ -81,7 +79,6 @@ async function displayData(photographer) {
 async function init() {
   const photographer = await getPhotographer(photographerId);
   displayData(photographer);
-  console.log('Donnée récupérée dans init:', photographer);
 }
 
 init();
