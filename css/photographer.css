@@ -5,8 +5,13 @@
 .photograph-header {
   background-color: #fafafa;
   height: 300px;
-  margin: 0 100px;
-  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%,-50%);
 }
 
 .photograph-header img {
@@ -14,13 +19,48 @@
   width: 200px;
   object-fit: cover;
   border-radius: 50%;
+  left: calc(100% - 410px);
+  top: 45px;
+  position: relative;
 }
 
-.price-and-Like {
-  background-color: #DB8876;
+.photograph-header .photographInfo {
+  position: relative;
+  top: -160px;
+  margin-left: 30px;
+}
+
+.photograph-header h2 {
+  color: #D3573C;
+  font-size: 64px;
+  font-weight: 400;
+}
+
+.photograph-header h3 {
+  color: #901C1C;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.photograph-header h4 {
+  color: #525252;
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 20px;
+}
+
+.price-and-like {
+  display: flex;
+  width: 250px;
+  background: #DB8876;
   font-size: 24px;
   font-weight: 500;
   border-radius: 5px 5px 0 0;
+  position: fixed;
+  bottom: 0;
+  right: calc(100vw - 97%);
+  padding: 20px 40px 15px 40px;
+  justify-content: space-between;
 }
 
 .contact_button {
@@ -34,6 +74,9 @@
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+  position: relative;
+  left: calc(50% - 85px);
+  top: -40px;
 }
 
 .modal {

@@ -1,5 +1,6 @@
 /*global photographerFactory */
 const photographHeader = document.querySelector('.photograph-header');
+const mainDiv = document.querySelector('#main');
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const photographerId = urlParams.get('id');
@@ -20,11 +21,12 @@ async function getPhotographer() {
 // function to create elements on the header of photograper page
 function getUserHeaderDOM(name, city, country, tagline, picture) {
   const container = document.createElement('div');
+  container.classList.add('photographInfo');
   // creation of the picture
   const img = document.createElement('img');
   img.setAttribute('src', picture);
   img.setAttribute('alt', name);
-  container.appendChild(img);
+  photographHeader.appendChild(img);
   // creation of the name block
   const h2 = document.createElement('h2');
   h2.textContent = name;
@@ -44,16 +46,19 @@ function getUserHeaderDOM(name, city, country, tagline, picture) {
 
 // function to create price and like element of photograper page
 function getUserPriceLikeDOM(price) {
-  const photographPriceLike = document.createElement('div');
-  photographPriceLike.className = 'price-and-Like';
+  const photographPriceLike = document.createElement('span');
+  photographPriceLike.className = 'price-and-like';
   // creation of the like block
-  const like = document.createElement('h5');
-  like.textContent = 'nbLike + ♥';
+  const nblike = document.createElement('h5');
+  nblike.textContent = 'nbLike';
+  const likeHeart = document.createElement('i');
+  likeHeart.classList.add('fa-solid', 'fa-heart');
   // creation of the price block
   const h5 = document.createElement('h5');
-  h5.textContent = `${price}€/jour`;
+  h5.textContent = `${price}€ / jour`;
   // addition of previous elements in photographPriceLike block
-  photographPriceLike.appendChild(like);
+  photographPriceLike.appendChild(nblike);
+  nblike.appendChild(likeHeart);
   photographPriceLike.appendChild(h5);
   return photographPriceLike;
 }
@@ -71,9 +76,7 @@ async function displayData(photographer) {
   photographHeader.appendChild(userHeaderDOM);
 
   const userPriceLikeDOM = getUserPriceLikeDOM(photographerModel.price);
-  const photographerPriceLikeContainer = document.createElement('div');
-  photographHeader.appendChild(photographerPriceLikeContainer);
-  photographerPriceLikeContainer.appendChild(userPriceLikeDOM);
+  mainDiv.appendChild(userPriceLikeDOM);
 }
 
 async function init() {
