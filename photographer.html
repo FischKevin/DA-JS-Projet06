@@ -33,20 +33,20 @@
     </main>
     <div id="contact_modal">
       <div class="modal">
-        <header>
+        <header class="title-modal">
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
         <form>
           <div>
-            <label>Prénom</label>
-            <input />
-            <label>Nom</label>
-            <input />
-            <label>Email</label>
-            <input />
-            <label>Votre message</label>
-            <textarea cols="94" rows="8"></textarea>
+            <label for="firstName">Prénom</label>
+            <input type="text" name="firstName" id="firstName" required />
+            <label for="lastName">Nom</label>
+            <input type="text" name="lastName" id="lastName" required />
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" required />
+            <label for="message">Votre message</label>
+            <textarea cols="94" rows="8" name="message" id="message" required></textarea>
           </div>
           <button class="contact_button">Envoyer</button>
         </form>
