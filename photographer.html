@@ -32,7 +32,7 @@
           <h3 id="photographCityCountry"></h3>
           <h4 id="photographTagline"></h4>
         </div>
-        <button class="contact_button" onclick="displayModal()">
+        <button class="contact_button" id="contactButton">
           Contactez-moi
         </button>
       </div>
@@ -45,7 +45,8 @@
     <div id="contact_modal">
       <div class="modal">
         <header class="title-modal">
-          <h2>Contactez-moi</h2>
+          <h2 id="contact-title-wording1">Contactez-moi</h2>
+          <h2 id="contact-title-wording2"></h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
         <form>
@@ -64,7 +65,7 @@
       </div>
     </div>
     <script src="/scripts/factories/photographerFactory.js"></script>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+    <script type="module" src="/scripts/pages/photographer.js"></script>
+    <script type="module" src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>

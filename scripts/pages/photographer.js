@@ -3,7 +3,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const photographerId = urlParams.get('id');
 
-async function getPhotographer() {
+export async function getPhotographer() {
   return fetch('./data/photographers.json')
     .then((res) => res.json())
     .then((data) => {

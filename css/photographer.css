@@ -109,18 +109,33 @@
 }
 
 .modal header {
-  justify-content: space-between;
   width: 100%;
+  position: relative;
+  display: block;
+  margin-bottom: 30px;
 }
 
 .modal header img {
   cursor: pointer;
+  position: relative;
+  left: 94%;
+  top: -180px;
 }
 
 .modal header h2 {
   font-size: 64px;
   font-weight: normal;
-  text-align: center;
+  position: relative;
+}
+
+.modal header #contact-title-wording1 {
+  top: -30px;
+  width: 90%;
+}
+
+.modal header #contact-title-wording2 {
+  top: -50px;
+  width: 90%;
 }
 
 form {
