@@ -10,19 +10,26 @@ document.addEventListener('DOMContentLoaded', () => {
       'contact-title-wording2'
     );
     getPhotographer().then((photographer) => {
-      // Récupérez le nom du photographe et mettez-le dans le message
       contactTitleWording.innerText = `${photographer.name}`;
     });
-  }
 
-  function closeModal() {
-    const modal = document.getElementById('contact_modal');
-    modal.style.display = 'none';
+    const firstName = document.getElementById('firstName');
+    const lastName = document.getElementById('lastName');
+    const email = document.getElementById('email');
+    const message = document.getElementById('message');
+    lastName.value = '';
+    firstName.value = '';
+    email.value = '';
+    message.value = '';
   }
-
-  // Ajouter un gestionnaire d'événements au bouton "Contactez-moi"
   const contactButton = document.getElementById('contactButton');
   contactButton.addEventListener('click', displayModal);
-
-  // ... (autres fonctions et codes, le cas échéant)
 });
+
+function closeModal() {
+  const modal = document.getElementById('contact_modal');
+  modal.style.display = 'none';
+}
+
+const closeCross = document.getElementById('closeCross');
+closeCross.addEventListener('click', closeModal);
