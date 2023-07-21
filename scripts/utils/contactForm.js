@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const email = document.getElementById('email');
   const message = document.getElementById('message');
   const contactButton = document.getElementById('contactButton');
-  const submitButton = document.getElementById('submit_button');
+  const form = document.getElementById('contactForm');
 
   function displayModal() {
     const modal = document.getElementById('contact_modal');
@@ -44,5 +44,5 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(formResult);
     closeModal();
   }
-  submitButton.addEventListener('click', submitForm);
+  form.addEventListener('submit', submitForm);
 });
