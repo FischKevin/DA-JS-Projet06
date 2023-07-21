@@ -19,14 +19,14 @@
   width: 200px;
   object-fit: cover;
   border-radius: 50%;
-  left: calc(100% - 410px);
-  top: 45px;
+  left: calc(100% - 240px);
+  top: 50px;
   position: relative;
 }
 
 .photograph-header .photographInfo {
   position: relative;
-  top: -160px;
+  top: -140px;
   margin-left: 30px;
   width: 40%;
 }
@@ -80,7 +80,7 @@
 .photograph-header .contact_button {
   position: relative;
   left: calc(50% - 85px);
-  top: -40px;
+  bottom: 235px;
 }
 
 #contact_modal {
