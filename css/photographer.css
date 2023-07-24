@@ -11,7 +11,7 @@
   position: absolute;
   left: 50%;
   top: 250px;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 
 .photograph-header img {
@@ -32,13 +32,13 @@
 }
 
 .photograph-header h2 {
-  color: #D3573C;
+  color: #d3573c;
   font-size: clamp(32px, 4vw, 64px);
   font-weight: 400;
 }
 
 .photograph-header h3 {
-  color: #901C1C;
+  color: #901c1c;
   font-size: clamp(12px, 2vw, 24px);
   font-weight: 400;
 }
@@ -53,7 +53,7 @@
 .price-and-like {
   display: flex;
   width: 250px;
-  background: #DB8876;
+  background: #db8876;
   font-size: 24px;
   font-weight: 500;
   border-radius: 5px 5px 0 0;
@@ -89,7 +89,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(196, 196, 196, 0.4)
+  background-color: rgba(196, 196, 196, 0.4);
 }
 
 .modal {
@@ -100,12 +100,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 35px;
+  padding: 35px 35px 0 35px;
   position: fixed;
   left: 25%;
   top: 20px;
   opacity: 1;
   box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
+  max-height: 100%;
+  overflow-y: auto;
 }
 
 .modal header {
@@ -173,4 +175,8 @@ form textarea {
   width: 99%;
   font-size: 24px;
   padding: 15px 0 0 15px;
+}
+
+#submit_button {
+  margin-bottom: 70px;
 }
