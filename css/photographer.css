@@ -180,3 +180,8 @@ form textarea {
 #submit_button {
   margin-bottom: 70px;
 }
+
+#media-section {
+  position: relative;
+  top: 330px;
+}
