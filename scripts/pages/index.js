@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*global photographerFactory */
 async function getPhotographers() {
   return fetch("./data/photographers.json")
