@@ -5,3 +5,6 @@ package-lock.json
 .prettierignore
 .prettierrc.json
 *.report.html
+.gitignore
+.gitattributes
+.DS_Store
