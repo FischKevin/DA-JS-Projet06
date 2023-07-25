@@ -16,16 +16,20 @@ function mediaFactory(data) {
       const img = document.createElement("img");
       img.setAttribute("src", picture);
       // creation of the title block
-      const h2 = document.createElement("h2");
-      h2.textContent = title;
+      const pictureTitle = document.createElement("h2");
+      pictureTitle.textContent = title;
       // creation of the likes block
-      const h3 = document.createElement("h3");
-      h3.textContent = `${likes}`;
+      const pictureLikes = document.createElement("h2");
+      pictureLikes.textContent = likes;
+      //creation of heart icon
+      const heart = document.createElement("i");
+      heart.classList.add("fa-solid", "fa-heart");
+      pictureLikes.appendChild(heart);
       // addition of previous elements in article block
       article.appendChild(pictureLink);
       article.appendChild(img);
-      article.appendChild(h2);
-      article.appendChild(h3);
+      article.appendChild(pictureTitle);
+      article.appendChild(pictureLikes);
       return article;
     },
   };
