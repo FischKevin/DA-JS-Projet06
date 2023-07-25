@@ -26,8 +26,8 @@ function mediaFactory(data) {
       heart.classList.add("fa-solid", "fa-heart");
       pictureLikes.appendChild(heart);
       // addition of previous elements in article block
+      pictureLink.appendChild(img);
       article.appendChild(pictureLink);
-      article.appendChild(img);
       article.appendChild(pictureTitle);
       article.appendChild(pictureLikes);
       return article;
