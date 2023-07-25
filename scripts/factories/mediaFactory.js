@@ -16,6 +16,7 @@ function mediaFactory(data) {
       const img = document.createElement("img");
       img.setAttribute("src", picture);
       // creation of the title block
+      const spanTitleLikes = document.createElement("span");
       const pictureTitle = document.createElement("h2");
       pictureTitle.textContent = title;
       // creation of the likes block
@@ -24,12 +25,13 @@ function mediaFactory(data) {
       //creation of heart icon
       const heart = document.createElement("i");
       heart.classList.add("fa-solid", "fa-heart");
-      pictureLikes.appendChild(heart);
+      spanTitleLikes.appendChild(pictureTitle);
+      spanTitleLikes.appendChild(pictureLikes);
+      spanTitleLikes.appendChild(heart);
       // addition of previous elements in article block
       pictureLink.appendChild(img);
       article.appendChild(pictureLink);
-      article.appendChild(pictureTitle);
-      article.appendChild(pictureLikes);
+      article.appendChild(spanTitleLikes);
       return article;
     },
   };
