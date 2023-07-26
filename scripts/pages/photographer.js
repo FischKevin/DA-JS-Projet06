@@ -45,15 +45,19 @@ async function displayPhotographData(photographerData) {
   priceBlock.textContent = `${photographerData.price}€ / jour`;
 }
 
+function getTotalLikesCount() {
+  const pictureLikesElements = document.querySelectorAll(".nblikes");
+  let totalLikesCount = 0;
+
+  pictureLikesElements.forEach((pictureLikes) => {
+    const likesCount = parseInt(pictureLikes.textContent);
+    totalLikesCount += likesCount;
+  });
+
+  return totalLikesCount;
+}
+
 async function displayPriceAndLikeData(photographerData) {
-  // const photographer = await getPhotographer();
-  // creation of the like block
-  const nbLike = document.getElementById("nbLike");
-  nbLike.textContent = "nbLike ";
-  //creation of heart icon
-  const heart = document.createElement("i");
-  heart.classList.add("fa-solid", "fa-heart");
-  nbLike.appendChild(heart);
   // creation of the price block
   const priceBlock = document.getElementById("priceBlock");
   priceBlock.textContent = `${photographerData.price}€ / jour`;
@@ -67,6 +71,10 @@ async function displayMediaData(media) {
     const userMediaDOM = mediaModel.getMediaCardDOM();
     mediaSection.appendChild(userMediaDOM);
   });
+
+  const nbLike = document.getElementById("nbLike");
+  const totalLikesCount = getTotalLikesCount();
+  nbLike.textContent = totalLikesCount;
 }
 
 async function init() {

@@ -33,6 +33,7 @@ function mediaFactory(data) {
       const likesAndHeart = document.createElement("span");
       likesAndHeart.style.display = "flex";
       const pictureLikes = document.createElement("h2");
+      pictureLikes.className = "nblikes";
       pictureLikes.textContent = likes;
       pictureLikes.style.marginLeft = "10px";
       //creation of heart icon
