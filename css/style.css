@@ -115,7 +115,8 @@ main {
   border-radius: 50%;
 }
 
-#media-section figure img {
+#media-section figure img,
+#media-section figure video {
   height: 350px;
   width: 350px;
   object-fit: cover;
