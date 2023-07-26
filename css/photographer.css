@@ -69,6 +69,7 @@
   right: calc(100vw - 97%);
   padding: 20px 40px 15px 40px;
   justify-content: space-between;
+  z-index: 1;
 }
 
 .contact_button {
