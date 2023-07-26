@@ -50,6 +50,7 @@ main {
 #media-section {
   column-gap: 70px;
   row-gap: 10px;
+  padding-bottom: 60px;
 }
 
 .photographer_section .wrapper {
