@@ -76,6 +76,10 @@
   display: flex;
 }
 
+.fa-heart {
+  font-size: 22px;
+}
+
 .fa-heart-price {
   margin-left: 5px;
 }

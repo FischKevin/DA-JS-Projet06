@@ -44,7 +44,7 @@ function mediaFactory(data) {
       pictureLikes.style.marginLeft = "10px";
       const heart = document.createElement("i");
       heart.classList.add("fa-solid", "fa-heart");
-      heart.style.fontSize = "24px";
+      heart.style.fontSize = "22px";
       heart.style.margin = "2px 0 0 5px";
 
       divTitleLikes.appendChild(pictureTitle);
