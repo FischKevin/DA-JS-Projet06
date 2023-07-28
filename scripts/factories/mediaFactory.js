@@ -8,20 +8,17 @@ function mediaFactory(data) {
   return {
     getMediaCardDOM: function () {
       const article = document.createElement("figure");
-      const pictureLink = document.createElement("a");
-      pictureLink.setAttribute("href", `./photographer.html?id=${id}`);
-      pictureLink.setAttribute("role", "link");
 
       if (video) {
         const vid = document.createElement("video");
         vid.setAttribute("src", film);
         vid.style.maxHeight = "100%";
         vid.style.maxWidth = "350px";
-        pictureLink.appendChild(vid);
+        article.appendChild(vid);
       } else {
         const img = document.createElement("img");
         img.setAttribute("src", picture);
-        pictureLink.appendChild(img);
+        article.appendChild(img);
       }
 
       const divTitleLikes = document.createElement("div");
@@ -51,7 +48,6 @@ function mediaFactory(data) {
       likesAndHeart.appendChild(pictureLikes);
       likesAndHeart.appendChild(heart);
       divTitleLikes.appendChild(likesAndHeart);
-      article.appendChild(pictureLink);
       article.appendChild(divTitleLikes);
       return article;
     },
