@@ -1,5 +1,6 @@
 /*global mediaFactory */
-// import mediaFactory from "/scripts/factories/mediaFactory.js";
+import { openLightbox } from "/scripts/utils/lightBox.js";
+import { mediaFactory } from "/scripts/factories/mediaFactory.js";
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -20,7 +21,6 @@ export async function getPhotographer() {
 }
 
 async function displayPhotographData(photographerData) {
-  // const photographer = await getPhotographer(photographer);
   const picture = `./assets/images/photographers/00-Portraits/${photographerData.portrait}`;
   // creation of the picture
   const photographPicture = document.getElementById("photographPicture");

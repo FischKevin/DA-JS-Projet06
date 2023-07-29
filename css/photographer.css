@@ -103,7 +103,8 @@
   bottom: 235px;
 }
 
-#contact_modal {
+#contact_modal,
+.lightBox_Modal {
   position: absolute;
   top: 0;
   right: 0;

@@ -1,5 +1,6 @@
-/* exported mediaFactory */
-function mediaFactory(data) {
+import { openLightbox } from "/scripts/utils/lightbox.js";
+
+export function mediaFactory(data) {
   const { id, photographerId, title, image, video, likes, date, price } = data;
 
   const picture = `./assets/images/photographers/${photographerId}/${image}`;
@@ -14,10 +15,14 @@ function mediaFactory(data) {
         vid.setAttribute("src", film);
         vid.style.maxHeight = "100%";
         vid.style.maxWidth = "350px";
+        vid.className = "photographerMedia";
+        vid.addEventListener("click", () => openLightbox(picture));
         article.appendChild(vid);
       } else {
         const img = document.createElement("img");
         img.setAttribute("src", picture);
+        img.className = "photographerMedia";
+        img.addEventListener("click", () => openLightbox(picture));
         article.appendChild(img);
       }
 
