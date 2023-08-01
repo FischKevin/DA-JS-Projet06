@@ -1,5 +1,5 @@
 /*global mediaFactory */
-import { openLightbox } from "/scripts/utils/lightBox.js";
+// import { openLightbox } from "/scripts/utils/lightBox.js";
 import { mediaFactory } from "/scripts/factories/mediaFactory.js";
 
 const queryString = window.location.search;

@@ -16,13 +16,13 @@ export function mediaFactory(data) {
         vid.style.maxHeight = "100%";
         vid.style.maxWidth = "350px";
         vid.className = "photographerMedia";
-        vid.addEventListener("click", () => openLightbox(picture));
+        vid.addEventListener("click", () => openLightbox(picture, title));
         article.appendChild(vid);
       } else {
         const img = document.createElement("img");
         img.setAttribute("src", picture);
         img.className = "photographerMedia";
-        img.addEventListener("click", () => openLightbox(picture));
+        img.addEventListener("click", () => openLightbox(picture, title));
         article.appendChild(img);
       }
 

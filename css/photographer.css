@@ -113,6 +113,13 @@
   background-color: rgba(196, 196, 196, 0.4);
 }
 
+.lightBox_Modal {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
 .modal {
   border-radius: 5px;
   background-color: #db8876;
@@ -206,4 +213,42 @@ form textarea {
 #media-section {
   position: relative;
   top: 330px;
+}
+
+.lightBoxContent {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: white;
+  justify-content: center;
+}
+
+.lightBoxPrev,
+.lightBoxNext {
+  font-size: 40px;
+  height: 100%;
+}
+
+.lightBoxPicture {
+  height: 100%;
+  position: fixed;
+  background: white;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.lightBoxPictureSource {
+  object-fit: contain;
+  height: 90%;
+  z-index: 3;
+  position: relative;
+  margin-top: 20px;
+}
+
+.lightBoxPictureCaption {
+  font-size: 22px;
+  text-align: left;
 }
