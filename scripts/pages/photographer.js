@@ -1,13 +1,12 @@
 /*global mediaFactory */
-// import { openLightbox } from "/scripts/utils/lightBox.js";
-import { mediaFactory } from "/scripts/factories/mediaFactory.js";
+import { mediaFactory } from '/scripts/factories/mediaFactory.js';
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const photographerId = urlParams.get("id");
+const photographerId = urlParams.get('id');
 
 export async function getPhotographer() {
-  return fetch("./data/photographers.json")
+  return fetch('./data/photographers.json')
     .then((res) => res.json())
     .then((data) => {
       const photographer = data.photographers.find(
@@ -23,30 +22,30 @@ export async function getPhotographer() {
 async function displayPhotographData(photographerData) {
   const picture = `./assets/images/photographers/00-Portraits/${photographerData.portrait}`;
   // creation of the picture
-  const photographPicture = document.getElementById("photographPicture");
-  photographPicture.setAttribute("src", picture);
-  photographPicture.setAttribute("alt", photographerData.name);
+  const photographPicture = document.getElementById('photographPicture');
+  photographPicture.setAttribute('src', picture);
+  photographPicture.setAttribute('alt', photographerData.name);
   // creation of the name block
-  const photographName = document.getElementById("photographName");
+  const photographName = document.getElementById('photographName');
   photographName.textContent = photographerData.name;
   // creation of the city + country block
   const photographCityCountry = document.getElementById(
-    "photographCityCountry"
+    'photographCityCountry'
   );
   photographCityCountry.textContent = `${photographerData.city}, ${photographerData.country}`;
   // creation of the tagline block
-  const photographTagline = document.getElementById("photographTagline");
+  const photographTagline = document.getElementById('photographTagline');
   photographTagline.textContent = photographerData.tagline;
   // creation of the like block
-  const nbLike = document.getElementById("nbLike");
-  nbLike.textContent = "nbLike";
+  const nbLike = document.getElementById('nbLike');
+  nbLike.textContent = 'nbLike';
   // creation of the price block
-  const priceBlock = document.getElementById("priceBlock");
+  const priceBlock = document.getElementById('priceBlock');
   priceBlock.textContent = `${photographerData.price}€ / jour`;
 }
 
 function getTotalLikesCount() {
-  const pictureLikesElements = document.querySelectorAll(".nblikes");
+  const pictureLikesElements = document.querySelectorAll('.nblikes');
   let totalLikesCount = 0;
 
   pictureLikesElements.forEach((pictureLikes) => {
@@ -59,12 +58,12 @@ function getTotalLikesCount() {
 
 async function displayPriceAndLikeData(photographerData) {
   // creation of the price block
-  const priceBlock = document.getElementById("priceBlock");
+  const priceBlock = document.getElementById('priceBlock');
   priceBlock.textContent = `${photographerData.price}€ / jour`;
 }
 
 async function displayMediaData(media) {
-  const mediaSection = document.getElementById("media-section");
+  const mediaSection = document.getElementById('media-section');
 
   media.forEach((mediaItem) => {
     const mediaModel = mediaFactory(mediaItem);
@@ -72,7 +71,7 @@ async function displayMediaData(media) {
     mediaSection.appendChild(userMediaDOM);
   });
 
-  const nbLike = document.getElementById("nbLike");
+  const nbLike = document.getElementById('nbLike');
   const totalLikesCount = getTotalLikesCount();
   nbLike.textContent = totalLikesCount;
 }

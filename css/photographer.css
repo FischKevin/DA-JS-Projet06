@@ -215,25 +215,36 @@ form textarea {
   top: 330px;
 }
 
+.lightBox_Modal {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
 .lightBoxContent {
   display: flex;
   flex-direction: row;
   position: absolute;
-  height: 100%;
-  width: 100%;
+  height: 1253px;
   background: white;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .lightBoxPrev,
 .lightBoxNext {
-  font-size: 40px;
-  height: 100%;
+  font-size: 96px;
+  height: 140px;
+  cursor: pointer;
+  position: relative;
+  color: #901C1C;
+  margin: 0 20px 0 20px;
 }
 
 .lightBoxPicture {
-  height: 100%;
-  position: fixed;
+  height: 75%;
   background: white;
   margin: 0;
   display: flex;
@@ -241,14 +252,16 @@ form textarea {
 }
 
 .lightBoxPictureSource {
-  object-fit: contain;
-  height: 90%;
+  /* object-fit: contain; */
+  height: 100%;
   z-index: 3;
   position: relative;
   margin-top: 20px;
+  width: 100%;
 }
 
 .lightBoxPictureCaption {
   font-size: 22px;
   text-align: left;
+  margin-top: 15px;
 }
