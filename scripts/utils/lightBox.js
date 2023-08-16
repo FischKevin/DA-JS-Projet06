@@ -1,9 +1,16 @@
+function closeLightBox() {
+  const lightBox = document.getElementById('lightBox');
+  lightBox.style.display = 'none';
+}
+
 export function openLightbox(picture, title) {
   const lightBoxModal = document.createElement('div');
   lightBoxModal.setAttribute('role', 'modal');
+  lightBoxModal.setAttribute('id', 'lightBox');
   lightBoxModal.className = 'lightBox_Modal';
   const lightBoxModalClose = document.createElement('i');
   lightBoxModalClose.className = 'lightBoxModalClose';
+  lightBoxModalClose.setAttribute('id', 'lightBoxModalClose');
   lightBoxModalClose.classList.add('fa-solid');
   lightBoxModalClose.classList.add('fa-close');
   const lightBoxContent = document.createElement('div');
@@ -33,6 +40,10 @@ export function openLightbox(picture, title) {
   lightBoxContent.appendChild(lightBoxNext);
   lightBoxPicture.appendChild(lightBoxPictureSource);
   lightBoxPicture.appendChild(lightBoxPictureCaption);
+
+  const lightBoxModalCloseButton =
+    document.getElementById('lightBoxModalClose');
+  lightBoxModalCloseButton.addEventListener('click', closeLightBox);
 }
 
 const mediaCollection = document.getElementsByClassName('photographerMedia');

@@ -1,37 +1,37 @@
 /* exported displayModal */
 /* exported closeModal */
-import { getPhotographer } from "/scripts/pages/photographer.js";
+import { getPhotographer } from '/scripts/pages/photographer.js';
 
-document.addEventListener("DOMContentLoaded", () => {
-  const firstName = document.getElementById("firstName");
-  const lastName = document.getElementById("lastName");
-  const email = document.getElementById("email");
-  const message = document.getElementById("message");
-  const contactButton = document.getElementById("contactButton");
-  const form = document.getElementById("contactForm");
+document.addEventListener('DOMContentLoaded', () => {
+  const firstName = document.getElementById('firstName');
+  const lastName = document.getElementById('lastName');
+  const email = document.getElementById('email');
+  const message = document.getElementById('message');
+  const contactButton = document.getElementById('contactButton');
+  const form = document.getElementById('contactForm');
 
   async function displayModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "block";
+    const modal = document.getElementById('contact_modal');
+    modal.style.display = 'block';
     const contactTitleWording = document.getElementById(
-      "contact-title-wording2"
+      'contact-title-wording2'
     );
     const data = await getPhotographer();
     const photographer = data.photographer;
     contactTitleWording.innerText = `${photographer.name}`;
   }
-  contactButton.addEventListener("click", displayModal);
+  contactButton.addEventListener('click', displayModal);
 
   function closeModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "none";
-    lastName.value = "";
-    firstName.value = "";
-    email.value = "";
-    message.value = "";
+    const modal = document.getElementById('contact_modal');
+    modal.style.display = 'none';
+    lastName.value = '';
+    firstName.value = '';
+    email.value = '';
+    message.value = '';
   }
-  const closeCross = document.getElementById("closeCross");
-  closeCross.addEventListener("click", closeModal);
+  const closeCross = document.getElementById('closeCross');
+  closeCross.addEventListener('click', closeModal);
 
   function submitForm(event) {
     event.preventDefault();
@@ -44,5 +44,5 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(formResult);
     closeModal();
   }
-  form.addEventListener("submit", submitForm);
+  form.addEventListener('submit', submitForm);
 });
