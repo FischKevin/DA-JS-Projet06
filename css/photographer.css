@@ -113,6 +113,12 @@
   cursor: pointer;
 }
 
+.contact_button:hover,
+.contact_button:focus {
+  color: #000000;
+  background-color: #DB8876;
+}
+
 .photograph-header .contact_button {
   position: relative;
   left: calc(50% - 85px);
@@ -229,6 +235,13 @@ form textarea {
 
 #submit_button {
   margin-bottom: 70px;
+  border: 1px solid transparent;
+}
+
+#submit_button:hover,
+#submit_button:focus {
+  margin-bottom: 70px;
+  border: 1px solid #000000;
 }
 
 #media-section {
