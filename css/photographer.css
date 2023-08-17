@@ -57,6 +57,21 @@
   margin-top: 15px;
 }
 
+.sortBlock {
+  position: absolute;
+  top: 320px;
+}
+
+.sortBlock label {
+  font-weight: 700;
+  font-size: 18px;
+  margin-right: 20px;
+}
+
+.sortBlock option {
+  background-color: #901C1C;
+}
+
 .price-and-like {
   display: flex;
   width: 250px;
@@ -112,6 +127,7 @@
   bottom: 0;
   left: 0;
   background-color: rgba(196, 196, 196, 0.4);
+  z-index: 5;
 }
 
 .lightBox_Modal {
@@ -213,7 +229,7 @@ form textarea {
 
 #media-section {
   position: relative;
-  top: 330px;
+  top: 280px;
 }
 
 .lightBox_Modal {
