@@ -1,7 +1,4 @@
-function closeLightBox() {
-  const lightBox = document.getElementById('lightBox');
-  lightBox.style.display = 'none';
-}
+let lightBoxModalCloseButton = null;
 
 export function openLightbox(picture, title) {
   const lightBoxModal = document.createElement('div');
@@ -41,8 +38,7 @@ export function openLightbox(picture, title) {
   lightBoxPicture.appendChild(lightBoxPictureSource);
   lightBoxPicture.appendChild(lightBoxPictureCaption);
 
-  const lightBoxModalCloseButton =
-    document.getElementById('lightBoxModalClose');
+  lightBoxModalCloseButton = lightBoxModal.querySelector('.lightBoxModalClose');
   lightBoxModalCloseButton.addEventListener('click', closeLightBox);
 }
 
@@ -50,4 +46,19 @@ const mediaCollection = document.getElementsByClassName('photographerMedia');
 
 for (const mediaElement of mediaCollection) {
   mediaElement.addEventListener('click', openLightbox);
+}
+
+function removeLightBoxListeners() {
+  if (lightBoxModalCloseButton) {
+    lightBoxModalCloseButton.removeEventListener('click', closeLightBox);
+    lightBoxModalCloseButton = null;
+  }
+}
+
+function closeLightBox() {
+  const lightBox = document.getElementById('lightBox');
+  if (lightBox) {
+    lightBox.remove();
+    removeLightBoxListeners();
+  }
 }
