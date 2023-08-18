@@ -1,6 +1,6 @@
 let lightBoxModalCloseButton = null;
 
-export function openLightbox(picture, title) {
+export function openLightbox(src, title, type = 'image') {
   const lightBoxModal = document.createElement('div');
   lightBoxModal.setAttribute('role', 'modal');
   lightBoxModal.setAttribute('id', 'lightBox');
@@ -18,10 +18,25 @@ export function openLightbox(picture, title) {
   lightBoxPrev.classList.add('fa-chevron-left');
   const lightBoxPicture = document.createElement('figure');
   lightBoxPicture.className = 'lightBoxPicture';
-  const lightBoxPictureSource = document.createElement('img');
-  lightBoxPictureSource.setAttribute('src', picture);
-  lightBoxPictureSource.setAttribute('alt', title);
-  lightBoxPictureSource.className = 'lightBoxPictureSource';
+
+  if (type === 'image') {
+    const lightBoxPictureSource = document.createElement('img');
+    lightBoxPictureSource.setAttribute('src', src);
+    console.log('src img:', src);
+    lightBoxPictureSource.setAttribute('alt', title);
+    lightBoxPictureSource.className = 'lightBoxPictureSource';
+    lightBoxPicture.appendChild(lightBoxPictureSource);
+  } else if (type === 'video') {
+    const lightBoxVideo = document.createElement('video');
+    lightBoxVideo.setAttribute('controls', '');
+    const lightBoxVideoSource = document.createElement('source');
+    lightBoxVideoSource.setAttribute('src', src);
+    console.log('src video:', src);
+    lightBoxVideoSource.setAttribute('type', 'video/mp4');
+    lightBoxVideo.appendChild(lightBoxVideoSource);
+    lightBoxPicture.appendChild(lightBoxVideo);
+  }
+
   const lightBoxPictureCaption = document.createElement('figcaption');
   lightBoxPictureCaption.innerHTML = title;
   lightBoxPictureCaption.className = 'lightBoxPictureCaption';
@@ -35,7 +50,6 @@ export function openLightbox(picture, title) {
   lightBoxContent.appendChild(lightBoxPrev);
   lightBoxContent.appendChild(lightBoxPicture);
   lightBoxContent.appendChild(lightBoxNext);
-  lightBoxPicture.appendChild(lightBoxPictureSource);
   lightBoxPicture.appendChild(lightBoxPictureCaption);
 
   lightBoxModalCloseButton = lightBoxModal.querySelector('.lightBoxModalClose');
@@ -45,7 +59,10 @@ export function openLightbox(picture, title) {
 const mediaCollection = document.getElementsByClassName('photographerMedia');
 
 for (const mediaElement of mediaCollection) {
-  mediaElement.addEventListener('click', openLightbox);
+  mediaElement.addEventListener('click', function () {
+    const mediaType = mediaElement.tagName === 'VIDEO' ? 'video' : 'image';
+    openLightbox(mediaElement.src, mediaElement.alt || '', mediaType);
+  });
 }
 
 function removeLightBoxListeners() {
