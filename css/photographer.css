@@ -27,7 +27,7 @@
 
 .photograph-header .photographInfo {
   position: relative;
-  top: -140px;
+  bottom: 140px;
   margin-left: 30px;
   width: 40%;
 }
