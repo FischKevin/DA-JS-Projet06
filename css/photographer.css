@@ -57,7 +57,7 @@
   width: 90%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  margin-top: 27%;
+  margin-top: 380px;
   column-gap: 70px;
   row-gap: 10px;
   padding-bottom: 60px;
@@ -238,7 +238,7 @@
   cursor: pointer;
   position: relative;
   left: 94%;
-  top: -175px;
+  bottom: 170px;
 }
 
 .modal header h2 {
@@ -249,12 +249,12 @@
 }
 
 .modal header #contact-title-wording1 {
-  top: -30px;
+  bottom: 30px;
   width: 90%;
 }
 
 .modal header #contact-title-wording2 {
-  top: -50px;
+  bottom: 50px;
   width: 90%;
 }
 
@@ -318,7 +318,7 @@ form textarea {
 
 .lightBoxModalClose {
   position: relative;
-  top: -46%;
+  bottom: 46%;
   left: calc(100% - 59px);
   z-index: 4;
   color: var(--primary-color);
