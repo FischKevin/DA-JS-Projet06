@@ -1,5 +1,10 @@
 @import url("photographer.css");
 
+* {
+  --primary-color: #901C1C;
+  --secondary-color: ##D3573C;
+}
+
 body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
@@ -14,7 +19,7 @@ header {
 }
 
 h1 {
-  color: #901c1c;
+  color: var(--primary-color);
   margin-right: 100px;
 }
 
@@ -36,8 +41,7 @@ main {
   margin-left: 100px;
 }
 
-.photographer_section,
-#media-section {
+.photographer_section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin-top: 100px;
@@ -45,12 +49,6 @@ main {
 
 .photographer_section {
   gap: 70px;
-}
-
-#media-section {
-  column-gap: 70px;
-  row-gap: 10px;
-  padding-bottom: 60px;
 }
 
 .photographer_section .wrapper {
@@ -67,26 +65,14 @@ main {
   overflow: hidden;
 }
 
-#media-section figure {
-  overflow: hidden;
-  justify-self: center;
-}
-
 .photographer_section article h2 {
-  color: #d3573c;
+  color: var(--secondary-color);
   font-size: 36px;
   font-weight: 400;
 }
 
-#media-section figure h2,
-#media-section figure figcaption {
-  color: #901c1c;
-  font-size: 24px;
-  font-weight: 400;
-}
-
 .photographer_section article h3 {
-  color: #901c1c;
+  color: var(--primary-color);
   font-size: 16px;
   font-weight: 400;
   margin-bottom: 5px;
@@ -103,8 +89,7 @@ main {
   font-weight: 400;
 }
 
-.photographer_section article img,
-#media-section figure img {
+.photographer_section article img {
   object-fit: cover;
 }
 
@@ -113,12 +98,4 @@ main {
   height: 200px;
   width: 200px;
   border-radius: 50%;
-}
-
-#media-section figure img,
-#media-section figure video {
-  height: 350px;
-  width: 350px;
-  object-fit: cover;
-  border-radius: 2%;
 }

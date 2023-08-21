@@ -19,7 +19,6 @@
       <a href="./index.html">
         <img
           src="assets/images/logo.png"
-          href="./index.html"
           class="logo"
           alt="Fisheye Home Page"
           role="link"
@@ -37,22 +36,23 @@
         </div>
         <button class="contact_button" id="contactButton">Contactez-moi</button>
       
-        <div class="sortBlock">
-          <label for="sortSelect">Trier par</label>
-          <select name="sort" id="sortSelect">
-            <option value="popularité">Popularité</option>
-            <option value="date">Date</option>
-            <option value="titre">Titre</option>
-          </select>
-        </div>
+        <div class="custom-select">
+          <span class="customSelectWording">Trier par</span>
+          <div class="selected-option" id="selected-option">Popularité</div>
+          <div class="options">
+              <div class="option" data-value="date">Date</div>
+              <div class="option" data-value="titre">Titre</div>
+          </div>
       </div>
-      <span class="price-and-like">
+
+      </div>
+      <section class="price-and-like">
         <div class="likes">
           <h5 class="nbLike" id="nbLike"></h5>
           <i class="fa-solid fa-heart fa-heart-price"></i>
         </div>
         <h5 id="priceBlock"></h5>
-      </span>
+      </section>
       <div id="media-section"></div>
     </main>
     <div id="contact_modal">

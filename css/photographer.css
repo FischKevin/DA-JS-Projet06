@@ -15,12 +15,6 @@
   border-radius: 5px;
 }
 
-#media-section {
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-}
-
 .photograph-header img {
   height: 200px;
   width: 200px;
@@ -45,7 +39,7 @@
 }
 
 .photograph-header h3 {
-  color: #901c1c;
+  color: var(--primary-color);
   font-size: clamp(12px, 2vw, 24px);
   font-weight: 400;
 }
@@ -57,31 +51,89 @@
   margin-top: 15px;
 }
 
-.sortBlock {
-  position: absolute;
-  top: 320px;
+#media-section {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 27%;
+  column-gap: 70px;
+  row-gap: 10px;
+  padding-bottom: 60px;
 }
 
-.sortBlock label {
-  font-weight: 700;
+#media-section figure {
+  overflow: hidden;
+  justify-self: center;
+}
+
+#media-section figure h2,
+#media-section figure figcaption {
+  color: var(--primary-color);
+  font-size: 24px;
+  font-weight: 400;
+}
+
+#media-section figure img,
+#media-section figure video {
+  height: 350px;
+  width: 350px;
+  object-fit: cover;
+  border-radius: 2%;
+}
+
+.custom-select {
+  position: relative;
+  bottom: 90px;
+  display: flex;
+  z-index: 50;
+}
+
+.customSelectWording {
   font-size: 18px;
-  margin-right: 20px;
+  font-weight: 700;
 }
 
-.sortBlock select {
-  background-color: #901C1C;
+.custom-select .selected-option {
+  background-color: var(--primary-color);
+  padding: 10px 15px;
+  margin-left: 10px;
+  bottom: 10px;
+  position: relative;
   color: white;
-  font-size: 16px;
-  border: none;
+  width: 90px;
   border-radius: 5px;
-  padding: 15px;
-  outline: none;
+  cursor: pointer;
+  z-index: 50;
+  border-bottom: 1px solid white;
 }
 
-.sortBlock option {
-  background-color: #901C1C;
-  border-bottom: 1px solid white;
-  padding: 15px;
+.custom-select .options {
+  display: none;
+  position: relative;
+  top: 31px;
+  left: -120px;
+  background-color: var(--primary-color);
+  width: 120px;
+  color: white;
+  cursor: pointer;
+  z-index: 50;
+}
+
+.option {
+  padding: 10px;
+  position: relative;
+  width: 90px;
+  padding: 10px 15px;
+  z-index: 50;
+  border-top: 1px solid white;
+}
+
+.option:hover {
+  background-color: #DB8876;
+  color: black;
+  z-index: 50;
 }
 
 .price-and-like {
@@ -120,7 +172,7 @@
   width: 170px;
   height: 70px;
   border: none;
-  background-color: #901c1c;
+  background-color: var(--primary-color);
   border-radius: 5px;
   cursor: pointer;
 }
@@ -255,11 +307,6 @@ form textarea {
   border: 1px solid #000000;
 }
 
-#media-section {
-  position: relative;
-  top: 280px;
-}
-
 .lightBox_Modal {
   display: flex;
   justify-content: center;
@@ -274,7 +321,7 @@ form textarea {
   top: -46%;
   left: calc(100% - 59px);
   z-index: 4;
-  color: #901C1C;
+  color: var(--primary-color);
   font-size: 42px;
   margin-top: 10px;
 }
@@ -296,7 +343,7 @@ form textarea {
   left: 0px;
   cursor: pointer;
   position: relative;
-  color: #901C1C;
+  color: var(--primary-color);
 }
 
 .lightBoxPrev {
