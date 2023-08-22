@@ -76,31 +76,6 @@ async function displayMediaData(media) {
   nbLike.textContent = totalLikesCount;
 }
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   const sortSelect = document.getElementById('sortSelect');
-
-//   function hideSelectedOption() {
-//     // Reset toutes les options à visible
-//     for (let option of sortSelect.options) {
-//       option.style.display = 'block';
-//     }
-
-//     // Cachez l'option actuellement sélectionnée
-//     const selectedOption = sortSelect.options[sortSelect.selectedIndex];
-//     selectedOption.style.display = 'none';
-//   }
-
-//   // Masquer l'option sélectionnée par défaut au chargement de la page
-//   hideSelectedOption();
-
-//   sortSelect.addEventListener('change', function () {
-//     hideSelectedOption();
-//   });
-// });
-
-const sortBlockSelect = document.getElementById('selected-option');
-sortBlockSelect.addEventListener('click', displaySortMenu);
-
 function displaySortMenu() {
   const sortBlockOptions = document.querySelector('.options');
 
@@ -112,17 +87,23 @@ function displaySortMenu() {
   }
 }
 
-// Lorsque vous cliquez sur une option, mettez à jour le texte de 'selected-option'
-// et masquez les options
+const sortBlockSelect = document.querySelector('.selected-option');
+sortBlockSelect.addEventListener('click', displaySortMenu);
+
 const options = document.querySelectorAll('.option');
 options.forEach((option) => {
   option.addEventListener('click', function () {
+    // Sauvegarder le texte actuel de l'élément selected-option
+    const currentSelectedText = sortBlockSelect.textContent;
+
+    // Mettre à jour le texte de 'selected-option' avec le texte de l'option cliquée
     sortBlockSelect.textContent = this.textContent;
+
+    // Mettre à jour l'option cliquée avec le texte sauvegardé
+    this.textContent = currentSelectedText;
 
     // Masquer les options après avoir sélectionné une option
     this.closest('.options').style.display = 'none';
-
-    // (Facultatif) Mettre à jour la valeur data ou faire d'autres opérations ici...
   });
 });
 

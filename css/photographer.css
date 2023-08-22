@@ -109,6 +109,13 @@
   border-bottom: 1px solid white;
 }
 
+.custom-select .selected-option:after {
+  font-family: "Font Awesome 6 Free"; 
+  content: "\f078";
+  margin-left: 10px;
+  font-weight: 600;
+}
+
 .custom-select .options {
   display: none;
   position: relative;
