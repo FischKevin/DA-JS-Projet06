@@ -78,34 +78,41 @@ async function displayMediaData(media) {
 
 function displaySortMenu() {
   const sortBlockOptions = document.querySelector('.options');
+  const selectedOption = document.querySelector('.selected-option');
 
   if (sortBlockOptions.style.display === 'block') {
     sortBlockOptions.style.display = 'none';
     sortBlockOptions.classList.remove('open');
+    selectedOption.classList.remove('open');
   } else {
     sortBlockOptions.style.display = 'block';
     sortBlockOptions.classList.add('open');
+    selectedOption.classList.add('open');
   }
 }
 
-const sortBlockSelect = document.querySelector('.selected-option');
-sortBlockSelect.addEventListener('click', displaySortMenu);
+// Événement pour gérer le choix d'une option
+function handleOptionClick(event) {
+  const selectedOption = document.querySelector('.selected-option');
+  const clickedOption = event.target;
 
-const options = document.querySelectorAll('.option');
-options.forEach((option) => {
-  option.addEventListener('click', function () {
-    // Sauvegarder le texte actuel de l'élément selected-option
-    const currentSelectedText = sortBlockSelect.textContent;
+  // Échanger le texte entre l'option sélectionnée et l'option cliquée
+  const tempText = selectedOption.textContent;
+  selectedOption.textContent = clickedOption.textContent;
+  clickedOption.textContent = tempText;
 
-    // Mettre à jour le texte de 'selected-option' avec le texte de l'option cliquée
-    sortBlockSelect.textContent = this.textContent;
+  // Ferme le menu
+  displaySortMenu();
+}
 
-    // Mettre à jour l'option cliquée avec le texte sauvegardé
-    this.textContent = currentSelectedText;
+// Attacher les événements
+document
+  .querySelector('.selected-option')
+  .addEventListener('click', displaySortMenu);
 
-    // Masquer les options après avoir sélectionné une option
-    this.closest('.options').style.display = 'none';
-  });
+const sortOptions = document.querySelectorAll('.option');
+sortOptions.forEach((sortOptions) => {
+  sortOptions.addEventListener('click', handleOptionClick);
 });
 
 async function init() {

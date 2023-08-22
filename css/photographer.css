@@ -102,26 +102,32 @@
   bottom: 10px;
   position: relative;
   color: white;
-  width: 90px;
+  width: 101px;
   border-radius: 5px;
   cursor: pointer;
   z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 24px;
 }
 
 .custom-select .selected-option:after {
   font-family: "Font Awesome 6 Free"; 
   content: "\f078";
   margin-left: 10px;
-  font-weight: 600;
+  font-weight: 900; 
+  display: inline-block;
+  transition: transform 0.3s;
 }
 
 .custom-select .options {
   display: none;
   position: relative;
   top: 31px;
-  left: -120px;
+  right: 131px;
   background-color: var(--primary-color);
-  width: 120px;
+  width: 131px;
   color: white;
   cursor: pointer;
   z-index: 50;
@@ -131,9 +137,13 @@
   box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.62);
 }
 
+.custom-select .selected-option.open:after {
+  transform: scaleY(-1);
+}
+
 .custom-select .option {
   position: relative;
-  width: 90px;
+  width: 101px;
   padding: 10px 15px;
   z-index: 50;
 }
