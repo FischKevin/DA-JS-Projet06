@@ -106,7 +106,6 @@
   border-radius: 5px;
   cursor: pointer;
   z-index: 50;
-  border-bottom: 1px solid white;
 }
 
 .custom-select .selected-option:after {
@@ -129,18 +128,26 @@
 }
 
 .option {
-  padding: 10px;
   position: relative;
   width: 90px;
   padding: 10px 15px;
   z-index: 50;
-  border-top: 1px solid white;
 }
 
 .option:hover {
   background-color: #DB8876;
   color: black;
   z-index: 50;
+}
+
+.option::before{
+  content: "";
+  position: absolute;
+  width: 85%;
+  height: 1px;
+  bottom: 40px;
+  background: white;
+  left: 9px;
 }
 
 .price-and-like {
