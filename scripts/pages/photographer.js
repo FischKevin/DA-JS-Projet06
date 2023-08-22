@@ -79,11 +79,12 @@ async function displayMediaData(media) {
 function displaySortMenu() {
   const sortBlockOptions = document.querySelector('.options');
 
-  // Toggle l'affichage des options
   if (sortBlockOptions.style.display === 'block') {
     sortBlockOptions.style.display = 'none';
+    sortBlockOptions.classList.remove('open');
   } else {
     sortBlockOptions.style.display = 'block';
+    sortBlockOptions.classList.add('open');
   }
 }
 
