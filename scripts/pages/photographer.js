@@ -65,6 +65,8 @@ async function displayPriceAndLikeData(photographerData) {
 async function displayMediaData(media) {
   const mediaSection = document.getElementById('media-section');
 
+  media.sort((a, b) => a.likes - b.likes);
+
   media.forEach((mediaItem) => {
     const mediaModel = mediaFactory(mediaItem);
     const userMediaDOM = mediaModel.getMediaCardDOM();
