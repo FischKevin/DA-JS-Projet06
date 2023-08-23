@@ -29,7 +29,7 @@ export function mediaFactory(data) {
       }
 
       const divTitleLikes = document.createElement('div');
-      divTitleLikes.className = 'div-title-tikes';
+      divTitleLikes.className = 'div-title-likes';
       divTitleLikes.style.display = 'flex';
       divTitleLikes.style.justifyContent = 'space-between';
       divTitleLikes.style.maxWidth = '350px';
@@ -41,13 +41,14 @@ export function mediaFactory(data) {
       pictureTitle.style.overflow = 'hidden';
       pictureTitle.style.textOverflow = 'ellipsis';
       const likesAndHeart = document.createElement('span');
+      likesAndHeart.className = 'likeContainer';
       likesAndHeart.style.display = 'flex';
       const pictureLikes = document.createElement('h2');
       pictureLikes.className = 'nblikes';
       pictureLikes.textContent = likes;
       pictureLikes.style.marginLeft = '10px';
       const heart = document.createElement('i');
-      heart.classList.add('fa-solid', 'fa-heart');
+      heart.classList.add('fa-solid', 'fa-heart', 'likeHeart');
       heart.style.fontSize = '22px';
       heart.style.margin = '4px 0 0 5px';
 
