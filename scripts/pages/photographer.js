@@ -1,10 +1,14 @@
 /*global mediaFactory */
 import { mediaFactory } from '/scripts/factories/mediaFactory.js';
 
+let media = [];
+
+// get the photographer id part of the url
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const photographerId = urlParams.get('id');
 
+// fetch json to get photographers and media data
 export async function getPhotographer() {
   return fetch('./data/photographers.json')
     .then((res) => res.json())
@@ -12,38 +16,34 @@ export async function getPhotographer() {
       const photographer = data.photographers.find(
         (p) => p.id === parseInt(photographerId)
       );
-      const media = data.media.filter(
+      media = data.media.filter(
         (m) => m.photographerId === parseInt(photographerId)
       );
       return { photographer, media };
     });
 }
 
+// function to display photographer data in the header
 async function displayPhotographData(photographerData) {
   const picture = `./assets/images/photographers/00-Portraits/${photographerData.portrait}`;
-  // creation of the picture
   const photographPicture = document.getElementById('photographPicture');
   photographPicture.setAttribute('src', picture);
   photographPicture.setAttribute('alt', photographerData.name);
-  // creation of the name block
   const photographName = document.getElementById('photographName');
   photographName.textContent = photographerData.name;
-  // creation of the city + country block
   const photographCityCountry = document.getElementById(
     'photographCityCountry'
   );
   photographCityCountry.textContent = `${photographerData.city}, ${photographerData.country}`;
-  // creation of the tagline block
   const photographTagline = document.getElementById('photographTagline');
   photographTagline.textContent = photographerData.tagline;
-  // creation of the like block
   const nbLike = document.getElementById('nbLike');
   nbLike.textContent = 'nbLike';
-  // creation of the price block
   const priceBlock = document.getElementById('priceBlock');
   priceBlock.textContent = `${photographerData.price}€ / jour`;
 }
 
+// function to add every likes on medias and return it
 function getTotalLikesCount() {
   const pictureLikesElements = document.querySelectorAll('.nblikes');
   let totalLikesCount = 0;
@@ -52,36 +52,33 @@ function getTotalLikesCount() {
     const likesCount = parseInt(pictureLikes.textContent);
     totalLikesCount += likesCount;
   });
-
   return totalLikesCount;
 }
 
+// function to display the price and like block at the bottom of the page
 async function displayPriceAndLikeData(photographerData) {
-  // creation of the price block
   const priceBlock = document.getElementById('priceBlock');
   priceBlock.textContent = `${photographerData.price}€ / jour`;
 }
 
+// funtion to display media galery and total like number
 async function displayMediaData(media) {
   const mediaSection = document.getElementById('media-section');
-
-  media.sort((a, b) => a.likes - b.likes);
-
+  mediaSection.innerHTML = '';
   media.forEach((mediaItem) => {
     const mediaModel = mediaFactory(mediaItem);
     const userMediaDOM = mediaModel.getMediaCardDOM();
     mediaSection.appendChild(userMediaDOM);
   });
-
   const nbLike = document.getElementById('nbLike');
   const totalLikesCount = getTotalLikesCount();
   nbLike.textContent = totalLikesCount;
 }
 
+// function to display and manage sort menu
 function displaySortMenu() {
   const sortBlockOptions = document.querySelector('.options');
   const selectedOption = document.querySelector('.selected-option');
-
   if (sortBlockOptions.style.display === 'block') {
     sortBlockOptions.style.display = 'none';
     sortBlockOptions.classList.remove('open');
@@ -93,32 +90,50 @@ function displaySortMenu() {
   }
 }
 
-// Événement pour gérer le choix d'une option
+// function to handle option selection in sort menu
 function handleOptionClick(event) {
   const selectedOption = document.querySelector('.selected-option');
   const clickedOption = event.target;
-
-  // Échanger le texte entre l'option sélectionnée et l'option cliquée
+  // switch text between the selected one and the clicked one
   const tempText = selectedOption.textContent;
   selectedOption.textContent = clickedOption.textContent;
   clickedOption.textContent = tempText;
-
-  // Ferme le menu
   displaySortMenu();
 }
-
-// Attacher les événements
+// each time an option is selected, handleOptionClick managed sort menu
 document
   .querySelector('.selected-option')
   .addEventListener('click', displaySortMenu);
-
 const sortOptions = document.querySelectorAll('.option');
 sortOptions.forEach((sortOptions) => {
   sortOptions.addEventListener('click', handleOptionClick);
 });
 
+// add an event listener on the sort menu
+document.querySelector('.custom-select').addEventListener('click', (event) => {
+  if (event.target.classList.contains('option')) {
+    // get the value from the clicked option
+    const sortBy = event.target.dataset.value;
+    // sort medias
+    sortAndDisplayMedia(media, sortBy);
+  }
+});
+
+// function to sort and display media
+function sortAndDisplayMedia(media, criteria) {
+  if (criteria === 'popularity') {
+    media.sort((a, b) => b.likes - a.likes);
+  } else if (criteria === 'date') {
+    media.sort((a, b) => new Date(b.date) - new Date(a.date));
+  } else if (criteria === 'title') {
+    media.sort((a, b) => a.title.localeCompare(b.title));
+  }
+  displayMediaData(media);
+}
+
 async function init() {
-  const { photographer, media } = await getPhotographer();
+  const { photographer, media: retrievedMedia } = await getPhotographer();
+  media = retrievedMedia.sort((a, b) => b.likes - a.likes);
   displayPhotographData(photographer);
   displayPriceAndLikeData(photographer);
   displayMediaData(media);

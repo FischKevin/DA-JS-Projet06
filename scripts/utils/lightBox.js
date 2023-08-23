@@ -22,7 +22,6 @@ export function openLightbox(src, title, type = 'image') {
   if (type === 'image') {
     const lightBoxPictureSource = document.createElement('img');
     lightBoxPictureSource.setAttribute('src', src);
-    console.log('src img:', src);
     lightBoxPictureSource.setAttribute('alt', title);
     lightBoxPictureSource.className = 'lightBoxPictureSource';
     lightBoxPicture.appendChild(lightBoxPictureSource);
@@ -31,7 +30,6 @@ export function openLightbox(src, title, type = 'image') {
     lightBoxVideo.setAttribute('controls', '');
     const lightBoxVideoSource = document.createElement('source');
     lightBoxVideoSource.setAttribute('src', src);
-    console.log('src video:', src);
     lightBoxVideoSource.setAttribute('type', 'video/mp4');
     lightBoxVideo.appendChild(lightBoxVideoSource);
     lightBoxPicture.appendChild(lightBoxVideo);

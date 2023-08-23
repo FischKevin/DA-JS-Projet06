@@ -1,7 +1,7 @@
 import { openLightbox } from '/scripts/utils/lightbox.js';
 
 export function mediaFactory(data) {
-  const { id, photographerId, title, image, video, likes, date, price } = data;
+  const { photographerId, title, image, video, likes } = data;
 
   const picture = `./assets/images/photographers/${photographerId}/${image}`;
   const film = `./assets/images/photographers/${photographerId}/${video}`;
