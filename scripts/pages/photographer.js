@@ -109,17 +109,68 @@ sortOptions.forEach((sortOptions) => {
   sortOptions.addEventListener('click', handleOptionClick);
 });
 
+// sort menu : handle display of sort menu
+// define original content for each option
+document.querySelectorAll('.option').forEach((option) => {
+  option.setAttribute('data-original-content', option.textContent);
+});
 // add an event listener on the sort menu
 document.querySelector('.custom-select').addEventListener('click', (event) => {
   if (event.target.classList.contains('option')) {
-    // get the value from the clicked option
-    const sortBy = event.target.dataset.value;
-    // sort medias
-    sortAndDisplayMedia(media, sortBy);
+    const selectedOptionElem = document.querySelector('.selected-option');
+    const clickedValue = event.target.dataset.value;
+
+    // rebuild original content for each option
+    document.querySelectorAll('.option').forEach((option) => {
+      option.textContent = option.getAttribute('data-original-content');
+    });
+
+    // switch/case depending of the data-value of the clicked option
+    switch (clickedValue) {
+      case 'popularity':
+        selectedOptionElem.textContent = 'Popularité';
+        selectedOptionElem.dataset.value = 'popularity';
+
+        document.querySelector(
+          '.option[data-value="popularity"]'
+        ).style.display = 'none';
+        document.querySelector('.option[data-value="date"]').style.display =
+          'block';
+        document.querySelector('.option[data-value="title"]').style.display =
+          'block';
+        break;
+
+      case 'date':
+        selectedOptionElem.textContent = 'Date';
+        selectedOptionElem.dataset.value = 'date';
+
+        document.querySelector('.option[data-value="date"]').style.display =
+          'none';
+        document.querySelector(
+          '.option[data-value="popularity"]'
+        ).style.display = 'block';
+        document.querySelector('.option[data-value="title"]').style.display =
+          'block';
+        break;
+
+      case 'title':
+        selectedOptionElem.textContent = 'Titre';
+        selectedOptionElem.dataset.value = 'title';
+
+        document.querySelector('.option[data-value="title"]').style.display =
+          'none';
+        document.querySelector('.option[data-value="date"]').style.display =
+          'block';
+        document.querySelector(
+          '.option[data-value="popularity"]'
+        ).style.display = 'block';
+        break;
+    }
+    sortAndDisplayMedia(media, clickedValue);
   }
 });
 
-// function to sort and display media
+// sort menu : function to sort and display media
 function sortAndDisplayMedia(media, criteria) {
   if (criteria === 'popularity') {
     media.sort((a, b) => b.likes - a.likes);
@@ -131,6 +182,7 @@ function sortAndDisplayMedia(media, criteria) {
   displayMediaData(media);
 }
 
+// liked medias
 // function to add an event listener if a likeHeart element has no event listener
 function attachLikeEvent() {
   const likeHearts = document.querySelectorAll('.likeHeart');
