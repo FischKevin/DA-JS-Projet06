@@ -21,6 +21,7 @@ export function mediaFactory(data) {
       } else {
         const img = document.createElement('img');
         img.setAttribute('src', picture);
+        img.setAttribute('alt', title);
         img.className = 'photographerMedia';
         img.addEventListener('click', () =>
           openLightbox(picture, title, 'image')

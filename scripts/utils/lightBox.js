@@ -1,5 +1,6 @@
 let lightBoxModalCloseButton = null;
 
+// function to open lightbox and display ui
 export function openLightbox(src, title, type = 'image') {
   const lightBoxModal = document.createElement('div');
   lightBoxModal.setAttribute('role', 'modal');
@@ -19,6 +20,7 @@ export function openLightbox(src, title, type = 'image') {
   const lightBoxPicture = document.createElement('figure');
   lightBoxPicture.className = 'lightBoxPicture';
 
+  // display image or video depending on the source
   if (type === 'image') {
     const lightBoxPictureSource = document.createElement('img');
     lightBoxPictureSource.setAttribute('src', src);
@@ -54,15 +56,21 @@ export function openLightbox(src, title, type = 'image') {
   lightBoxModalCloseButton.addEventListener('click', closeLightBox);
 }
 
+// media galery
 const mediaCollection = document.getElementsByClassName('photographerMedia');
-
+// create an event on each media from media galery and then open the media
 for (const mediaElement of mediaCollection) {
   mediaElement.addEventListener('click', function () {
     const mediaType = mediaElement.tagName === 'VIDEO' ? 'video' : 'image';
-    openLightbox(mediaElement.src, mediaElement.alt || '', mediaType);
+    // Get the title from the <figcaption> element
+    const title =
+      mediaElement.parentElement.querySelector('figcaption').textContent;
+    // Use the title as the alt attribute
+    openLightbox(mediaElement.src, title || '', mediaType);
   });
 }
 
+// remove event listeners
 function removeLightBoxListeners() {
   if (lightBoxModalCloseButton) {
     lightBoxModalCloseButton.removeEventListener('click', closeLightBox);
@@ -70,6 +78,7 @@ function removeLightBoxListeners() {
   }
 }
 
+// function to close the lightbox
 function closeLightBox() {
   const lightBox = document.getElementById('lightBox');
   if (lightBox) {
