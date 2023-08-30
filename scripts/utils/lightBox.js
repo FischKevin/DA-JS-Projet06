@@ -1,4 +1,5 @@
 let lightBoxModalCloseButton = null;
+let currentIndex = null;
 
 // function to open lightbox and display ui
 // export function showMediaInModal(src, title, type = 'image') {
@@ -59,18 +60,23 @@ function showMediaInModal(src, title, type = 'image') {
 
 function attachMediaEvents() {
   const mediaCollection = document.getElementsByClassName('photographerMedia');
+  const mediaCollectionArray = Array.from(mediaCollection);
 
-  for (const mediaElement of mediaCollection) {
+  mediaCollectionArray.forEach((mediaElement, index) => {
     if (!mediaElement.dataset.eventAttached) {
       mediaElement.addEventListener('click', function () {
         const mediaType = mediaElement.tagName === 'VIDEO' ? 'video' : 'image';
         const title =
           mediaElement.parentElement.querySelector('figcaption').textContent;
+
+        currentIndex = index;
+        console.log(`Média cliqué à l'index: ${currentIndex}`);
+
         showMediaInModal(mediaElement.src, title || '', mediaType);
       });
       mediaElement.dataset.eventAttached = true;
     }
-  }
+  });
 }
 
 // remove event listeners
