@@ -2,7 +2,6 @@ let lightBoxModalCloseButton = null;
 let currentIndex = null;
 
 // function to open lightbox and display ui
-// export function showMediaInModal(src, title, type = 'image') {
 function showMediaInModal(src, title, type = 'image') {
   const lightBoxModal = document.createElement('div');
   lightBoxModal.setAttribute('role', 'modal');
@@ -58,23 +57,26 @@ function showMediaInModal(src, title, type = 'image') {
   lightBoxModalCloseButton.addEventListener('click', closeLightBox);
 }
 
-function attachMediaEvents() {
-  const mediaCollection = document.getElementsByClassName('photographerMedia');
-  const mediaCollectionArray = Array.from(mediaCollection);
+function attachEventToMediaElement(mediaElement) {
+  if (!mediaElement.dataset.eventAttached) {
+    mediaElement.addEventListener('click', function () {
+      const mediaType = mediaElement.tagName === 'VIDEO' ? 'video' : 'image';
+      const title =
+        mediaElement.parentElement.querySelector('figcaption').textContent;
+      currentIndex = Array.from(
+        document.getElementsByClassName('photographerMedia')
+      ).indexOf(mediaElement);
+      console.log(`Média cliqué à l'index: ${currentIndex}`);
+      showMediaInModal(mediaElement.src, title || '', mediaType);
+    });
+    mediaElement.dataset.eventAttached = true;
+  }
+}
 
-  mediaCollectionArray.forEach((mediaElement, index) => {
-    if (!mediaElement.dataset.eventAttached) {
-      mediaElement.addEventListener('click', function () {
-        const mediaType = mediaElement.tagName === 'VIDEO' ? 'video' : 'image';
-        const title =
-          mediaElement.parentElement.querySelector('figcaption').textContent;
-
-        currentIndex = index;
-        console.log(`Média cliqué à l'index: ${currentIndex}`);
-
-        showMediaInModal(mediaElement.src, title || '', mediaType);
-      });
-      mediaElement.dataset.eventAttached = true;
+function attachEventsToNewMediaElements(addedNodes) {
+  addedNodes.forEach((node) => {
+    if (node.classList && node.classList.contains('photographerMedia')) {
+      attachEventToMediaElement(node);
     }
   });
 }
@@ -89,11 +91,17 @@ function removeLightBoxListeners() {
 
 // function to close the lightbox
 function closeLightBox() {
+  console.log('Trying to close the lightbox.');
   const lightBox = document.getElementById('lightBox');
   if (lightBox) {
     lightBox.remove();
+    console.log('lightBox should now be removed.');
     removeLightBoxListeners();
+  } else {
+    console.log('lightBox element not found.');
   }
+  const lightBoxCheck = document.getElementById('lightBox');
+  console.log('Lightbox still in DOM:', !!lightBoxCheck);
 }
 
 function countMediaElements() {
@@ -113,7 +121,7 @@ function initObserver() {
     for (let mutation of mutationsList) {
       if (mutation.type === 'childList') {
         countMediaElements();
-        attachMediaEvents();
+        attachEventsToNewMediaElements(mutation.addedNodes);
       }
     }
   };
@@ -124,7 +132,5 @@ function initObserver() {
 
 document.addEventListener('DOMContentLoaded', function () {
   initObserver();
-  countMediaElements(); // initial count
+  countMediaElements();
 });
-
-window.showMediaInModal = showMediaInModal;
