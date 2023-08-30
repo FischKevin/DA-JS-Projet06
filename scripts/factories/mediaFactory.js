@@ -1,7 +1,8 @@
-import { openLightbox } from '/scripts/utils/lightbox.js';
+// import { showMediaInModal } from '/scripts/utils/lightbox.js';
+// export function mediaFactory(data) {
 
-export function mediaFactory(data) {
-  const { photographerId, title, image, video, likes } = data;
+function mediaFactory(data) {
+  const { photographerId, title, image, video, likes, index } = data;
 
   const picture = `./assets/images/photographers/${photographerId}/${image}`;
   const film = `./assets/images/photographers/${photographerId}/${video}`;
@@ -16,7 +17,9 @@ export function mediaFactory(data) {
         vid.style.maxHeight = '100%';
         vid.style.maxWidth = '350px';
         vid.className = 'photographerMedia';
-        vid.addEventListener('click', () => openLightbox(film, title, 'video'));
+        vid.addEventListener('click', () =>
+          showMediaInModal(film, title, 'video', index)
+        );
         article.appendChild(vid);
       } else {
         const img = document.createElement('img');
@@ -24,7 +27,7 @@ export function mediaFactory(data) {
         img.setAttribute('alt', title);
         img.className = 'photographerMedia';
         img.addEventListener('click', () =>
-          openLightbox(picture, title, 'image')
+          showMediaInModal(picture, title, 'image', index)
         );
         article.appendChild(img);
       }

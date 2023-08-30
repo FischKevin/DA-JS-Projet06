@@ -1,7 +1,8 @@
 let lightBoxModalCloseButton = null;
 
 // function to open lightbox and display ui
-export function openLightbox(src, title, type = 'image') {
+// export function showMediaInModal(src, title, type = 'image') {
+function showMediaInModal(src, title, type = 'image') {
   const lightBoxModal = document.createElement('div');
   lightBoxModal.setAttribute('role', 'modal');
   lightBoxModal.setAttribute('id', 'lightBox');
@@ -56,18 +57,20 @@ export function openLightbox(src, title, type = 'image') {
   lightBoxModalCloseButton.addEventListener('click', closeLightBox);
 }
 
-// media galery
-const mediaCollection = document.getElementsByClassName('photographerMedia');
-// create an event on each media from media galery and then open the media
-for (const mediaElement of mediaCollection) {
-  mediaElement.addEventListener('click', function () {
-    const mediaType = mediaElement.tagName === 'VIDEO' ? 'video' : 'image';
-    // Get the title from the <figcaption> element
-    const title =
-      mediaElement.parentElement.querySelector('figcaption').textContent;
-    // Use the title as the alt attribute
-    openLightbox(mediaElement.src, title || '', mediaType);
-  });
+function attachMediaEvents() {
+  const mediaCollection = document.getElementsByClassName('photographerMedia');
+
+  for (const mediaElement of mediaCollection) {
+    if (!mediaElement.dataset.eventAttached) {
+      mediaElement.addEventListener('click', function () {
+        const mediaType = mediaElement.tagName === 'VIDEO' ? 'video' : 'image';
+        const title =
+          mediaElement.parentElement.querySelector('figcaption').textContent;
+        showMediaInModal(mediaElement.src, title || '', mediaType);
+      });
+      mediaElement.dataset.eventAttached = true;
+    }
+  }
 }
 
 // remove event listeners
@@ -86,3 +89,36 @@ function closeLightBox() {
     removeLightBoxListeners();
   }
 }
+
+function countMediaElements() {
+  const mediaCollection = document.getElementsByClassName('photographerMedia');
+  const mediaCollectionArray = Array.from(mediaCollection);
+  const mediaGalleryArraySize = mediaCollectionArray.length;
+  console.log(`Il y a ${mediaGalleryArraySize} médias dans la galerie.`);
+}
+
+function initObserver() {
+  const targetNode = document.getElementById('media-section');
+  if (!targetNode) return;
+
+  const config = { attributes: false, childList: true, subtree: true };
+
+  const callback = function (mutationsList) {
+    for (let mutation of mutationsList) {
+      if (mutation.type === 'childList') {
+        countMediaElements();
+        attachMediaEvents();
+      }
+    }
+  };
+
+  const observer = new MutationObserver(callback);
+  observer.observe(targetNode, config);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  initObserver();
+  countMediaElements(); // initial count
+});
+
+window.showMediaInModal = showMediaInModal;

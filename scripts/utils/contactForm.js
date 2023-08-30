@@ -1,6 +1,6 @@
 /* exported displayModal */
 /* exported closeModal */
-import { getPhotographer } from '/scripts/pages/photographer.js';
+// import { getPhotographer } from '/scripts/pages/photographer.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const firstName = document.getElementById('firstName');

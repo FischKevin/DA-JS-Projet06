@@ -1,7 +1,12 @@
 /*global mediaFactory */
-import { mediaFactory } from '/scripts/factories/mediaFactory.js';
+// import { mediaFactory } from '/scripts/factories/mediaFactory.js';
 
 let media = [];
+
+window.onload = function () {
+  const mediaLoadedEvent = new Event('mediaLoaded');
+  document.dispatchEvent(mediaLoadedEvent);
+};
 
 // get the photographer id part of the url
 const queryString = window.location.search;
@@ -9,7 +14,8 @@ const urlParams = new URLSearchParams(queryString);
 const photographerId = urlParams.get('id');
 
 // fetch json to get photographers and media data
-export async function getPhotographer() {
+// export async function getPhotographer() {
+async function getPhotographer() {
   return fetch('./data/photographers.json')
     .then((res) => res.json())
     .then((data) => {
