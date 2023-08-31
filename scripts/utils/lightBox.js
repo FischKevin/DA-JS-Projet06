@@ -104,6 +104,7 @@ function closeLightBox() {
   console.log('Lightbox still in DOM:', !!lightBoxCheck);
 }
 
+// function to count media elements
 function countMediaElements() {
   const mediaCollection = document.getElementsByClassName('photographerMedia');
   const mediaCollectionArray = Array.from(mediaCollection);
@@ -111,6 +112,7 @@ function countMediaElements() {
   console.log(`Il y a ${mediaGalleryArraySize} médias dans la galerie.`);
 }
 
+//function to initialize the observer
 function initObserver() {
   const targetNode = document.getElementById('media-section');
   if (!targetNode) return;

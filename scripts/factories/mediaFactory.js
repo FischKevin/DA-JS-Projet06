@@ -1,6 +1,4 @@
-// import { showMediaInModal } from '/scripts/utils/lightbox.js';
-// export function mediaFactory(data) {
-
+//function to create media objects
 function mediaFactory(data) {
   const { photographerId, title, image, video, likes, index } = data;
 

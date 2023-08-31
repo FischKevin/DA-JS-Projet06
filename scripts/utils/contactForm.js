@@ -1,7 +1,3 @@
-/* exported displayModal */
-/* exported closeModal */
-// import { getPhotographer } from '/scripts/pages/photographer.js';
-
 document.addEventListener('DOMContentLoaded', () => {
   const firstName = document.getElementById('firstName');
   const lastName = document.getElementById('lastName');
@@ -10,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const contactButton = document.getElementById('contactButton');
   const form = document.getElementById('contactForm');
 
+  // function do display contact modal
   async function displayModal() {
     const modal = document.getElementById('contact_modal');
     modal.style.display = 'block';
@@ -22,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   contactButton.addEventListener('click', displayModal);
 
+  // function to close contact modal
   function closeModal() {
     const modal = document.getElementById('contact_modal');
     modal.style.display = 'none';
@@ -33,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeCross = document.getElementById('closeCross');
   closeCross.addEventListener('click', closeModal);
 
+  // function to submit form
   function submitForm(event) {
     event.preventDefault();
     const formResult = {

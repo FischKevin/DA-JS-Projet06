@@ -1,4 +1,4 @@
-/* exported photographerFactory */
+//function to create a photographer object
 function photographerFactory(data) {
   const { name, id, city, country, tagline, price, portrait } = data;
 
