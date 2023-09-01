@@ -1,5 +1,12 @@
+import { globalState } from '/scripts/utils/globalState.js';
+import { displayMediaData } from '/scripts/pages/photographer.js';
+
+console.log('Après importation:', globalState.media);
+// const media = globalState.media;
+
 // function to display and manage sort menu
 function displaySortMenu() {
+  console.log('Au début de displaySortMenu:', globalState.media);
   const sortBlockOptions = document.querySelector('.options');
   const selectedOption = document.querySelector('.selected-option');
   if (sortBlockOptions.style.display === 'block') {
@@ -15,6 +22,7 @@ function displaySortMenu() {
 
 // function to handle option selection in sort menu
 function handleOptionClick(event) {
+  console.log('Au début de handleOptionClick:', globalState.media);
   const selectedOption = document.querySelector('.selected-option');
   const clickedOption = event.target;
   // switch text between the selected one and the clicked one
@@ -39,6 +47,7 @@ document.querySelectorAll('.option').forEach((option) => {
 });
 // add an event listener on the sort menu
 document.querySelector('.custom-select').addEventListener('click', (event) => {
+  console.log('Avant traitement dans custom-select:', globalState.media);
   if (event.target.classList.contains('option')) {
     const selectedOptionElem = document.querySelector('.selected-option');
     const clickedValue = event.target.dataset.value;
@@ -89,18 +98,20 @@ document.querySelector('.custom-select').addEventListener('click', (event) => {
         ).style.display = 'block';
         break;
     }
-    sortAndDisplayMedia(media, clickedValue);
+    sortAndDisplayMedia(clickedValue);
   }
 });
 
 // sort menu : function to sort and display media
-function sortAndDisplayMedia(media, criteria) {
+function sortAndDisplayMedia(criteria) {
+  console.log('Au début de sortAndDisplayMedia:', globalState.media);
   if (criteria === 'popularity') {
-    media.sort((a, b) => b.likes - a.likes);
+    globalState.media.sort((a, b) => b.likes - a.likes);
   } else if (criteria === 'date') {
-    media.sort((a, b) => new Date(b.date) - new Date(a.date));
+    globalState.media.sort((a, b) => new Date(b.date) - new Date(a.date));
   } else if (criteria === 'title') {
-    media.sort((a, b) => a.title.localeCompare(b.title));
+    globalState.media.sort((a, b) => a.title.localeCompare(b.title));
   }
-  displayMediaData(media);
+  console.log(globalState.media);
+  displayMediaData(globalState.media);
 }

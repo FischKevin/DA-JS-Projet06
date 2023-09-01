@@ -1,4 +1,9 @@
-let media = [];
+import { mediaFactory } from '/scripts/factories/mediaFactory.js';
+import { globalState } from '/scripts/utils/globalState.js';
+
+// let media = [];
+let mediaClickedIndex;
+let media = globalState.media;
 
 // get the photographer id part of the url
 const queryString = window.location.search;
@@ -60,7 +65,7 @@ async function displayPriceAndLikeData(photographerData) {
 }
 
 // function to display media galery and total like number, and attach event listeners
-async function displayMediaData(media) {
+export async function displayMediaData(media) {
   const mediaSection = document.getElementById('media-section');
   mediaSection.innerHTML = '';
   media.forEach((mediaItem) => {
@@ -81,18 +86,24 @@ async function displayMediaData(media) {
 }
 
 // function to get the size of the media collection
-function getMediaCollectionSize() {
+export function getMediaCollectionSize() {
   const mediaCollection = document.querySelectorAll('.photographerMedia');
-  console.log(mediaCollection.length);
+  // console.log(mediaCollection.length);
   return mediaCollection.length;
 }
 
 // function to get the index of the media clicked
-function getMediaClickedIndex(event) {
+export function getMediaClickedIndex(event) {
+  if (!event.target.classList.contains('photographerMedia')) return;
+
   const mediaCollection = document.querySelectorAll('.photographerMedia');
   const mediaClicked = event.target;
-  const mediaClickedIndex = Array.from(mediaCollection).indexOf(mediaClicked);
-  console.log(mediaClickedIndex);
+  mediaClickedIndex = Array.from(mediaCollection).indexOf(mediaClicked);
+  // console.log(mediaClickedIndex);
+
+  // Mettre à jour l'état global
+  globalState.mediaClickedIndex = mediaClickedIndex;
+
   return mediaClickedIndex;
 }
 
@@ -100,6 +111,7 @@ function getMediaClickedIndex(event) {
 async function init() {
   const { photographer, media: retrievedMedia } = await getPhotographer();
   media = retrievedMedia.sort((a, b) => b.likes - a.likes);
+  globalState.media = media;
   displayPhotographData(photographer);
   displayPriceAndLikeData(photographer);
   displayMediaData(media);

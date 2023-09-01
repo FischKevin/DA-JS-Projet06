@@ -1,11 +1,14 @@
+import { getMediaCollectionSize } from '/scripts/pages/photographer.js';
+import { globalState } from '/scripts/utils/globalState.js';
+// import { getMediaClickedIndex } from '/scripts/pages/photographer.js';
+
 let lightBoxModalCloseButton = null;
-let currentIndex = null;
-const mediaCollection = document.getElementsByClassName('photographerMedia');
-const mediaCollectionArray = Array.from(mediaCollection);
-const mediaGalleryArraySize = mediaCollectionArray.length;
+let mediaClickedIndex = globalState.mediaClickedIndex;
+// console.log(mediaClickedIndex);
+// console.log(toto);
 
 // function to open lightbox and display ui
-function showMediaInModal(src, title, type = 'image') {
+export function showMediaInLightbox(src, title, type = 'image') {
   const lightBoxModal = document.createElement('div');
   lightBoxModal.setAttribute('role', 'modal');
   lightBoxModal.setAttribute('id', 'lightBox');
@@ -21,6 +24,7 @@ function showMediaInModal(src, title, type = 'image') {
   lightBoxPrev.className = 'lightBoxPrev';
   lightBoxPrev.classList.add('fa-solid');
   lightBoxPrev.classList.add('fa-chevron-left');
+  lightBoxPrev.addEventListener('click', showPreviousMediaInLightBox);
   const lightBoxPicture = document.createElement('figure');
   lightBoxPicture.className = 'lightBoxPicture';
 
@@ -48,6 +52,7 @@ function showMediaInModal(src, title, type = 'image') {
   lightBoxNext.className = 'lightBoxNext';
   lightBoxNext.classList.add('fa-solid');
   lightBoxNext.classList.add('fa-chevron-right');
+  lightBoxNext.addEventListener('click', showNextMediaInLightBox);
   document.body.appendChild(lightBoxModal);
   lightBoxModal.appendChild(lightBoxContent);
   lightBoxContent.appendChild(lightBoxModalClose);
@@ -58,6 +63,8 @@ function showMediaInModal(src, title, type = 'image') {
 
   lightBoxModalCloseButton = lightBoxModal.querySelector('.lightBoxModalClose');
   lightBoxModalCloseButton.addEventListener('click', closeLightBox);
+
+  console.log(`Index du média cliqué: ${globalState.mediaClickedIndex}`);
 }
 
 // remove event listeners
@@ -81,4 +88,41 @@ function closeLightBox() {
   }
   const lightBoxCheck = document.getElementById('lightBox');
   console.log('Lightbox still in DOM:', !!lightBoxCheck);
+}
+
+// function to show next media in lightbox
+function showNextMediaInLightBox() {
+  if (globalState.mediaClickedIndex !== -1) {
+    const nextMediaIndex =
+      (globalState.mediaClickedIndex + 1) % getMediaCollectionSize();
+    const nextMediaElement =
+      document.querySelectorAll('.photographerMedia')[nextMediaIndex];
+    const src = nextMediaElement.getAttribute('src');
+    const title = nextMediaElement.getAttribute('alt');
+    const type =
+      nextMediaElement.tagName.toLowerCase() === 'img' ? 'image' : 'video';
+
+    globalState.mediaClickedIndex = nextMediaIndex;
+    closeLightBox(); // Fermez la lightbox actuelle
+    showMediaInLightbox(src, title, type, nextMediaElement); // Affichez le média suivant
+  }
+}
+
+// function to show previous media in lightbox
+function showPreviousMediaInLightBox() {
+  if (globalState.mediaClickedIndex !== -1) {
+    const totalMediaCount = getMediaCollectionSize();
+    const previousMediaIndex =
+      (globalState.mediaClickedIndex - 1 + totalMediaCount) % totalMediaCount;
+    const previousMediaElement =
+      document.querySelectorAll('.photographerMedia')[previousMediaIndex];
+    const src = previousMediaElement.getAttribute('src');
+    const title = previousMediaElement.getAttribute('alt');
+    const type =
+      previousMediaElement.tagName.toLowerCase() === 'img' ? 'image' : 'video';
+
+    globalState.mediaClickedIndex = previousMediaIndex;
+    closeLightBox(); // Fermez la lightbox actuelle
+    showMediaInLightbox(src, title, type, previousMediaElement); // Affichez le média précédent
+  }
 }
