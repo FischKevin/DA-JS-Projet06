@@ -61,6 +61,8 @@
   column-gap: 70px;
   row-gap: 10px;
   padding-bottom: 60px;
+  justify-items: center;
+  align-items: center;
 }
 
 #media-section figure {
