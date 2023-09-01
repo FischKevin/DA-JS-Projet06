@@ -1,5 +1,8 @@
 let lightBoxModalCloseButton = null;
 let currentIndex = null;
+const mediaCollection = document.getElementsByClassName('photographerMedia');
+const mediaCollectionArray = Array.from(mediaCollection);
+const mediaGalleryArraySize = mediaCollectionArray.length;
 
 // function to open lightbox and display ui
 function showMediaInModal(src, title, type = 'image') {
@@ -57,30 +60,6 @@ function showMediaInModal(src, title, type = 'image') {
   lightBoxModalCloseButton.addEventListener('click', closeLightBox);
 }
 
-function attachEventToMediaElement(mediaElement) {
-  if (!mediaElement.dataset.eventAttached) {
-    mediaElement.addEventListener('click', function () {
-      const mediaType = mediaElement.tagName === 'VIDEO' ? 'video' : 'image';
-      const title =
-        mediaElement.parentElement.querySelector('figcaption').textContent;
-      currentIndex = Array.from(
-        document.getElementsByClassName('photographerMedia')
-      ).indexOf(mediaElement);
-      console.log(`Média cliqué à l'index: ${currentIndex}`);
-      showMediaInModal(mediaElement.src, title || '', mediaType);
-    });
-    mediaElement.dataset.eventAttached = true;
-  }
-}
-
-function attachEventsToNewMediaElements(addedNodes) {
-  addedNodes.forEach((node) => {
-    if (node.classList && node.classList.contains('photographerMedia')) {
-      attachEventToMediaElement(node);
-    }
-  });
-}
-
 // remove event listeners
 function removeLightBoxListeners() {
   if (lightBoxModalCloseButton) {
@@ -103,36 +82,3 @@ function closeLightBox() {
   const lightBoxCheck = document.getElementById('lightBox');
   console.log('Lightbox still in DOM:', !!lightBoxCheck);
 }
-
-// function to count media elements
-function countMediaElements() {
-  const mediaCollection = document.getElementsByClassName('photographerMedia');
-  const mediaCollectionArray = Array.from(mediaCollection);
-  const mediaGalleryArraySize = mediaCollectionArray.length;
-  console.log(`Il y a ${mediaGalleryArraySize} médias dans la galerie.`);
-}
-
-//function to initialize the observer
-function initObserver() {
-  const targetNode = document.getElementById('media-section');
-  if (!targetNode) return;
-
-  const config = { attributes: false, childList: true, subtree: true };
-
-  const callback = function (mutationsList) {
-    for (let mutation of mutationsList) {
-      if (mutation.type === 'childList') {
-        countMediaElements();
-        attachEventsToNewMediaElements(mutation.addedNodes);
-      }
-    }
-  };
-
-  const observer = new MutationObserver(callback);
-  observer.observe(targetNode, config);
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  initObserver();
-  countMediaElements();
-});

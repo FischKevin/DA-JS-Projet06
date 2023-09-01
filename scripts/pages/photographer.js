@@ -59,7 +59,7 @@ async function displayPriceAndLikeData(photographerData) {
   priceBlock.textContent = `${photographerData.price}€ / jour`;
 }
 
-// funtion to display media galery and total like number
+// function to display media galery and total like number, and attach event listeners
 async function displayMediaData(media) {
   const mediaSection = document.getElementById('media-section');
   mediaSection.innerHTML = '';
@@ -71,6 +71,29 @@ async function displayMediaData(media) {
   const nbLike = document.getElementById('nbLike');
   const totalLikesCount = getTotalLikesCount();
   nbLike.textContent = totalLikesCount;
+
+  document
+    .getElementById('media-section')
+    .addEventListener('click', getMediaCollectionSize);
+  document
+    .getElementById('media-section')
+    .addEventListener('click', getMediaClickedIndex);
+}
+
+// function to get the size of the media collection
+function getMediaCollectionSize() {
+  const mediaCollection = document.querySelectorAll('.photographerMedia');
+  console.log(mediaCollection.length);
+  return mediaCollection.length;
+}
+
+// function to get the index of the media clicked
+function getMediaClickedIndex(event) {
+  const mediaCollection = document.querySelectorAll('.photographerMedia');
+  const mediaClicked = event.target;
+  const mediaClickedIndex = Array.from(mediaCollection).indexOf(mediaClicked);
+  console.log(mediaClickedIndex);
+  return mediaClickedIndex;
 }
 
 // function to sort and display media
