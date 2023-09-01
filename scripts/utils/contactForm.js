@@ -1,3 +1,5 @@
+import { getPhotographer } from '/scripts/pages/photographer.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const firstName = document.getElementById('firstName');
   const lastName = document.getElementById('lastName');
@@ -16,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = await getPhotographer();
     const photographer = data.photographer;
     contactTitleWording.innerText = `${photographer.name}`;
+    console.log(photographer.name);
   }
   contactButton.addEventListener('click', displayModal);
 

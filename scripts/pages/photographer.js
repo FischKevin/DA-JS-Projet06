@@ -10,8 +10,7 @@ const urlParams = new URLSearchParams(queryString);
 const photographerId = urlParams.get('id');
 
 // fetch json to get photographers and media data
-// export async function getPhotographer() {
-async function getPhotographer() {
+export async function getPhotographer() {
   return fetch('./data/photographers.json')
     .then((res) => res.json())
     .then((data) => {
