@@ -1,11 +1,7 @@
 import { getMediaCollectionSize } from '/scripts/pages/photographer.js';
 import { globalState } from '/scripts/utils/globalState.js';
-// import { getMediaClickedIndex } from '/scripts/pages/photographer.js';
 
 let lightBoxModalCloseButton = null;
-let mediaClickedIndex = globalState.mediaClickedIndex;
-// console.log(mediaClickedIndex);
-// console.log(toto);
 
 // function to open lightbox and display ui
 export function showMediaInLightbox(src, title, type = 'image') {
@@ -63,8 +59,6 @@ export function showMediaInLightbox(src, title, type = 'image') {
 
   lightBoxModalCloseButton = lightBoxModal.querySelector('.lightBoxModalClose');
   lightBoxModalCloseButton.addEventListener('click', closeLightBox);
-
-  console.log(`Index du média cliqué: ${globalState.mediaClickedIndex}`);
 }
 
 // remove event listeners
@@ -77,17 +71,11 @@ function removeLightBoxListeners() {
 
 // function to close the lightbox
 function closeLightBox() {
-  console.log('Trying to close the lightbox.');
   const lightBox = document.getElementById('lightBox');
   if (lightBox) {
     lightBox.remove();
-    console.log('lightBox should now be removed.');
     removeLightBoxListeners();
-  } else {
-    console.log('lightBox element not found.');
   }
-  const lightBoxCheck = document.getElementById('lightBox');
-  console.log('Lightbox still in DOM:', !!lightBoxCheck);
 }
 
 // function to show next media in lightbox
@@ -103,8 +91,8 @@ function showNextMediaInLightBox() {
       nextMediaElement.tagName.toLowerCase() === 'img' ? 'image' : 'video';
 
     globalState.mediaClickedIndex = nextMediaIndex;
-    closeLightBox(); // Fermez la lightbox actuelle
-    showMediaInLightbox(src, title, type, nextMediaElement); // Affichez le média suivant
+    closeLightBox();
+    showMediaInLightbox(src, title, type, nextMediaElement);
   }
 }
 
@@ -122,7 +110,7 @@ function showPreviousMediaInLightBox() {
       previousMediaElement.tagName.toLowerCase() === 'img' ? 'image' : 'video';
 
     globalState.mediaClickedIndex = previousMediaIndex;
-    closeLightBox(); // Fermez la lightbox actuelle
-    showMediaInLightbox(src, title, type, previousMediaElement); // Affichez le média précédent
+    closeLightBox();
+    showMediaInLightbox(src, title, type, previousMediaElement);
   }
 }

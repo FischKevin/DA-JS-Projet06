@@ -1,7 +1,6 @@
 import { mediaFactory } from '/scripts/factories/mediaFactory.js';
 import { globalState } from '/scripts/utils/globalState.js';
 
-// let media = [];
 let mediaClickedIndex;
 let media = globalState.media;
 
@@ -88,7 +87,6 @@ export async function displayMediaData(media) {
 // function to get the size of the media collection
 export function getMediaCollectionSize() {
   const mediaCollection = document.querySelectorAll('.photographerMedia');
-  // console.log(mediaCollection.length);
   return mediaCollection.length;
 }
 
@@ -99,9 +97,8 @@ export function getMediaClickedIndex(event) {
   const mediaCollection = document.querySelectorAll('.photographerMedia');
   const mediaClicked = event.target;
   mediaClickedIndex = Array.from(mediaCollection).indexOf(mediaClicked);
-  // console.log(mediaClickedIndex);
 
-  // Mettre à jour l'état global
+  // update the global state
   globalState.mediaClickedIndex = mediaClickedIndex;
 
   return mediaClickedIndex;
