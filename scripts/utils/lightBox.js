@@ -85,8 +85,16 @@ function showNextMediaInLightBox() {
       (globalState.mediaClickedIndex + 1) % getMediaCollectionSize();
     const nextMediaElement =
       document.querySelectorAll('.photographerMedia')[nextMediaIndex];
+
+    let title;
+    if (nextMediaElement.tagName.toLowerCase() === 'img') {
+      title = nextMediaElement.getAttribute('alt');
+    } else if (nextMediaElement.tagName.toLowerCase() === 'video') {
+      title = nextMediaElement.getAttribute('title');
+    }
+    console.log('Récupéré title:', title);
+
     const src = nextMediaElement.getAttribute('src');
-    const title = nextMediaElement.getAttribute('alt');
     const type =
       nextMediaElement.tagName.toLowerCase() === 'img' ? 'image' : 'video';
 
@@ -99,13 +107,20 @@ function showNextMediaInLightBox() {
 // function to show previous media in lightbox
 function showPreviousMediaInLightBox() {
   if (globalState.mediaClickedIndex !== -1) {
-    const totalMediaCount = getMediaCollectionSize();
     const previousMediaIndex =
-      (globalState.mediaClickedIndex - 1 + totalMediaCount) % totalMediaCount;
+      (globalState.mediaClickedIndex + 1) % getMediaCollectionSize();
     const previousMediaElement =
       document.querySelectorAll('.photographerMedia')[previousMediaIndex];
+
+    let title;
+    if (previousMediaElement.tagName.toLowerCase() === 'img') {
+      title = previousMediaElement.getAttribute('alt');
+    } else if (previousMediaElement.tagName.toLowerCase() === 'video') {
+      title = previousMediaElement.getAttribute('title');
+    }
+    console.log('Récupéré title:', title);
+
     const src = previousMediaElement.getAttribute('src');
-    const title = previousMediaElement.getAttribute('alt');
     const type =
       previousMediaElement.tagName.toLowerCase() === 'img' ? 'image' : 'video';
 

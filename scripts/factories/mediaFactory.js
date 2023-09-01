@@ -14,6 +14,7 @@ export function mediaFactory(data) {
       if (video) {
         const vid = document.createElement('video');
         vid.setAttribute('src', film);
+        vid.setAttribute('title', title);
         vid.style.maxHeight = '100%';
         vid.style.maxWidth = '350px';
         vid.className = 'photographerMedia';
