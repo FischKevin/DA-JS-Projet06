@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   async function displayModal() {
     const modal = document.getElementById('contact_modal');
     modal.style.display = 'block';
+    modal.setAttribute('aria-hidden', 'false');
+    modal.focus();
     const contactTitleWording = document.getElementById(
       'contact-title-wording2'
     );
@@ -29,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
     firstName.value = '';
     email.value = '';
     message.value = '';
+    modal.setAttribute('aria-hidden', 'true');
+    contactButton.focus();
   }
   const closeCross = document.getElementById('closeCross');
   closeCross.addEventListener('click', closeModal);
@@ -44,6 +48,32 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     console.log(formResult);
     closeModal();
+
+    // Show feedback
+    const feedbackDiv = document.createElement('div');
+    feedbackDiv.innerText = 'Merci! Votre message a été envoyé.';
+    feedbackDiv.style.position = 'fixed';
+    feedbackDiv.style.top = '50%';
+    feedbackDiv.style.left = '50%';
+    feedbackDiv.style.transform = 'translate(-50%, -50%)';
+    feedbackDiv.style.padding = '1rem';
+    feedbackDiv.style.backgroundColor = 'var(--primary-color)';
+    feedbackDiv.style.borderRadius = '5px';
+    feedbackDiv.style.color = '#fff';
+    document.body.appendChild(feedbackDiv);
+
+    setTimeout(() => {
+      feedbackDiv.remove();
+    }, 3000);
   }
   form.addEventListener('submit', submitForm);
+
+  // accessibility : close modal with escape key
+  document.addEventListener('keydown', function (event) {
+    if (
+      event.key === 'Escape' &&
+      document.getElementById('contact_modal').style.display === 'block'
+    )
+      closeModal();
+  });
 });

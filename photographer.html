@@ -26,7 +26,7 @@
         />
       </a>
     </header>
-    <main id="main">
+    <main id="main" role="main">
       <div class="photograph-header">
         <img id="photographPicture" alt="" />
         <div class="photographInfo">
@@ -34,7 +34,7 @@
           <h3 id="photographCityCountry"></h3>
           <h4 id="photographTagline"></h4>
         </div>
-        <button class="contact_button" id="contactButton">Contactez-moi</button>
+        <button class="contact_button" id="contactButton" aria-haspopup="dialog" aria-expanded="false">Contactez-moi</button>
       
         <div class="custom-select">
           <span class="customSelectWording">Trier par</span>
@@ -48,15 +48,15 @@
 
       </div>
       <section class="price-and-like">
-        <div class="likes">
+        <div class="likes" aria-label="Likes">
           <h5 class="nbLike" id="nbLike"></h5>
-          <i class="fa-solid fa-heart fa-heart-price"></i>
+          <i class="fa-solid fa-heart fa-heart-price" role="img" aria-label="heart"></i>
         </div>
         <h5 id="priceBlock"></h5>
       </section>
       <div id="media-section"></div>
     </main>
-    <div id="contact_modal">
+    <aside id="contact_modal" role="dialog" aria-labelledby="contact-title-wording1" aria-modal="true" aria-hidden="true">
       <div class="modal">
         <header class="title-modal">
           <h2 id="contact-title-wording1">Contactez-moi</h2>
@@ -79,7 +79,7 @@
           </button>
         </form>
       </div>
-    </div>
+    </aside>
     <script type="module" src="/scripts/utils/globalState.js"></script>
     <script type="module" src="/scripts/pages/photographer.js"></script>
     <script type="module" src="/scripts/factories/mediaFactory.js"></script>
