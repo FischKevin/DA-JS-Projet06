@@ -1,5 +1,5 @@
 //function to create a photographer object
-function photographerFactory(data) {
+export function photographerFactory(data) {
   const { name, id, city, country, tagline, price, portrait } = data;
 
   const picture = `./assets/images/photographers/00-Portraits/${portrait}`;

@@ -92,7 +92,6 @@ function showNextMediaInLightBox() {
     } else if (nextMediaElement.tagName.toLowerCase() === 'video') {
       title = nextMediaElement.getAttribute('title');
     }
-    console.log('Récupéré title:', title);
 
     const src = nextMediaElement.getAttribute('src');
     const type =
@@ -118,7 +117,6 @@ function showPreviousMediaInLightBox() {
     } else if (previousMediaElement.tagName.toLowerCase() === 'video') {
       title = previousMediaElement.getAttribute('title');
     }
-    console.log('Récupéré title:', title);
 
     const src = previousMediaElement.getAttribute('src');
     const type =

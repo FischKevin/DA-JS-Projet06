@@ -1,3 +1,5 @@
+import { photographerFactory } from '/scripts/factories/photographerFactory.js';
+
 //function to get data from photographers.json
 async function getPhotographers() {
   return fetch('./data/photographers.json')

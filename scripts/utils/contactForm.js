@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = await getPhotographer();
     const photographer = data.photographer;
     contactTitleWording.innerText = `${photographer.name}`;
-    console.log(photographer.name);
   }
   contactButton.addEventListener('click', displayModal);
 
