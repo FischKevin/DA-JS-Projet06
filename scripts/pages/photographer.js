@@ -1,5 +1,5 @@
-import { mediaFactory } from 'scripts/factories/mediaFactory.js';
-import { globalState } from 'scripts/utils/globalState.js';
+import { mediaFactory } from '../factories/mediaFactory.js';
+import { globalState } from '../utils/globalState.js';
 
 let mediaClickedIndex;
 let media = globalState.media;

@@ -1,5 +1,5 @@
-import { globalState } from 'scripts/utils/globalState.js';
-import { displayMediaData } from 'scripts/pages/photographer.js';
+import { globalState } from '../utils/globalState.js';
+import { displayMediaData } from '../pages/photographer.js';
 
 // function to display and manage sort menu
 function displaySortMenu() {
