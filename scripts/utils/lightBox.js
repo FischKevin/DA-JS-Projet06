@@ -1,5 +1,5 @@
-import { getMediaCollectionSize } from '/scripts/pages/photographer.js';
-import { globalState } from '/scripts/utils/globalState.js';
+import { getMediaCollectionSize } from './scripts/pages/photographer.js';
+import { globalState } from './scripts/utils/globalState.js';
 
 let lightBoxModalCloseButton = null;
 

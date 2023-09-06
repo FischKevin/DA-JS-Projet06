@@ -1,4 +1,4 @@
-import { showMediaInLightbox } from '/scripts/utils/lightBox.js';
+import { showMediaInLightbox } from './scripts/utils/lightBox.js';
 
 //function to create media objects
 export function mediaFactory(data) {
