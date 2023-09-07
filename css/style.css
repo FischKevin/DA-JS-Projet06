@@ -91,6 +91,8 @@ main {
 
 .photographer_section article img {
   object-fit: cover;
+  overflow-clip-margin: unset;
+  overflow: visible;
 }
 
 .photographer_section article img {
