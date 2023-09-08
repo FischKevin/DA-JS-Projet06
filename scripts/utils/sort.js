@@ -130,29 +130,20 @@ document.querySelectorAll('.option').forEach((optionElement) => {
   optionElement.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       handleOptionClick(event);
-      displaySortMenu(); // Fermez le menu après avoir sélectionné une option
+      // close menu after click
+      const sortBlockOptions = document.querySelector('.options');
+      sortBlockOptions.style.display = 'none';
+
+      // put focus on selected option
+      const selectedOption = document.querySelector('.selected-option');
+      selectedOption.focus();
+
       event.preventDefault();
     }
   });
 });
 
 // // handle option selection on keyboard event
-// document
-//   .querySelector('.custom-select')
-//   .addEventListener('keydown', (event) => {
-//     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-//       let current = Array.from(sortOptions).findIndex(
-//         (option) => option === event.target
-//       );
-//       if (event.key === 'ArrowDown' && current < sortOptions.length - 1) {
-//         sortOptions[current + 1].focus();
-//       } else if (event.key === 'ArrowUp' && current > 0) {
-//         sortOptions[current - 1].focus();
-//       }
-//       event.preventDefault();
-//     }
-//   });
-
 document.querySelectorAll('.option').forEach((optionElement) => {
   optionElement.addEventListener('keydown', (event) => {
     let sortOptionsArray = Array.from(sortOptions);
