@@ -23,6 +23,7 @@
   left: calc(100% - 240px);
   top: 50px;
   position: relative;
+  overflow-clip-margin: unset;
 }
 
 .photograph-header .photographInfo {
@@ -68,6 +69,7 @@
 #media-section figure {
   overflow: hidden;
   justify-self: center;
+  border-radius: 2%;
 }
 
 #media-section figure h2,
@@ -82,7 +84,7 @@
   height: 350px;
   width: 350px;
   object-fit: cover;
-  border-radius: 2%;
+  overflow: visible;
 }
 
 .custom-select {
