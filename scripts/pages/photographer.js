@@ -63,7 +63,7 @@ async function displayPriceAndLikeData(photographerData) {
 }
 
 // function to display media galery and total like number, and attach event listeners
-export async function displayMediaData(media) {
+export async function displayMediaData() {
   const mediaSection = document.getElementById('media-section');
   mediaSection.innerHTML = '';
   media.forEach((mediaItem) => {
@@ -81,6 +81,15 @@ export async function displayMediaData(media) {
   document
     .getElementById('media-section')
     .addEventListener('click', getMediaClickedIndex);
+
+  document
+    .getElementById('media-section')
+    .addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        getMediaCollectionSize(event);
+        getMediaClickedIndex(event);
+      }
+    });
 }
 
 // function to get the size of the media collection
