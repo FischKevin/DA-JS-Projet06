@@ -72,6 +72,13 @@
   border-radius: 2%;
 }
 
+#media-section figure .div-title-likes {
+  position: relative;
+  background: white;
+  margin-top: -5px;
+  padding-top: 5px;
+}
+
 #media-section figure h2,
 #media-section figure figcaption {
   color: var(--primary-color);
