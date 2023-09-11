@@ -36,6 +36,10 @@ main {
   padding-bottom: 50px;
 }
 
+a {
+  cursor: pointer;
+}
+
 .logo {
   height: 50px;
   margin-left: 100px;

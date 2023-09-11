@@ -92,6 +92,7 @@
   width: 350px;
   object-fit: cover;
   overflow: visible;
+  cursor: pointer;
 }
 
 .custom-select {

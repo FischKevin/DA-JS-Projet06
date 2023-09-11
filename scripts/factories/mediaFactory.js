@@ -77,6 +77,7 @@ export function mediaFactory(data) {
       heart.setAttribute('role', 'button');
       heart.setAttribute('aria-label', 'like');
       heart.setAttribute('tabindex', '0');
+      heart.style.cursor = 'pointer';
 
       divTitleLikes.appendChild(pictureTitle);
       likesAndHeart.appendChild(pictureLikes);
