@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('contact_modal');
     modal.style.display = 'block';
     modal.setAttribute('aria-hidden', 'false');
-    // modal.focus();
     firstName.focus();
     const contactTitleWording = document.getElementById(
       'contact-title-wording2'
