@@ -93,6 +93,13 @@
   object-fit: cover;
   overflow: visible;
   cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 2%;
+}
+
+#media-section figure img:focus,
+#media-section figure video:focus {
+  border: 2px solid blue;
 }
 
 .custom-select {

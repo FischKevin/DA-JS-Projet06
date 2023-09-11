@@ -57,6 +57,8 @@ export function showMediaInLightbox(src, title, type = 'image') {
   lightBoxContent.appendChild(lightBoxNext);
   lightBoxPicture.appendChild(lightBoxPictureCaption);
 
+  lightBoxContent.focus();
+
   lightBoxModalCloseButton = lightBoxModal.querySelector('.lightBoxModalClose');
   lightBoxModalCloseButton.addEventListener('click', closeLightBox);
 }

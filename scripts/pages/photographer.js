@@ -4,6 +4,8 @@ import { globalState } from '../utils/globalState.js';
 let mediaClickedIndex;
 let media = globalState.media;
 
+let isUsingKeyboard = false;
+
 // get the photographer id part of the url
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -120,6 +122,34 @@ async function init() {
   displayPhotographData(photographer);
   displayPriceAndLikeData(photographer);
   displayMediaData(media);
+  document.addEventListener('keydown', function () {
+    isUsingKeyboard = true;
+  });
+
+  document.addEventListener('mousedown', function () {
+    isUsingKeyboard = false;
+  });
+  document.addEventListener('focusin', function (event) {
+    if (isUsingKeyboard) {
+      if (
+        event.target.matches(
+          '#media-section figure img, #media-section figure video'
+        )
+      ) {
+        event.target.style.border = '2px solid blue';
+      }
+    }
+  });
+
+  document.addEventListener('focusout', function (event) {
+    if (
+      event.target.matches(
+        '#media-section figure img, #media-section figure video'
+      )
+    ) {
+      event.target.style.border = 'none';
+    }
+  });
 }
 
 init();
