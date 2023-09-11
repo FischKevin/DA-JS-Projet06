@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('contact_modal');
     modal.style.display = 'block';
     modal.setAttribute('aria-hidden', 'false');
-    modal.focus();
+    // modal.focus();
+    firstName.focus();
     const contactTitleWording = document.getElementById(
       'contact-title-wording2'
     );
@@ -60,6 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
     feedbackDiv.style.backgroundColor = 'var(--primary-color)';
     feedbackDiv.style.borderRadius = '5px';
     feedbackDiv.style.color = '#fff';
+    feedbackDiv.setAttribute('role', 'alert');
+    feedbackDiv.setAttribute('aria-label', 'Message envoyé avec succès');
+    feedbackDiv.setAttribute('aria-live', 'assertive');
     document.body.appendChild(feedbackDiv);
 
     setTimeout(() => {
