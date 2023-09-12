@@ -139,7 +139,8 @@ function showNextMediaInLightBox() {
 function showPreviousMediaInLightBox() {
   if (globalState.mediaClickedIndex !== -1) {
     const previousMediaIndex =
-      (globalState.mediaClickedIndex + 1) % getMediaCollectionSize();
+      (globalState.mediaClickedIndex - 1 + getMediaCollectionSize()) %
+      getMediaCollectionSize();
     const previousMediaElement =
       document.querySelectorAll('.photographerMedia')[previousMediaIndex];
 
