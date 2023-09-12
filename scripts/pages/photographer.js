@@ -122,31 +122,38 @@ async function init() {
   displayPhotographData(photographer);
   displayPriceAndLikeData(photographer);
   displayMediaData(media);
+  // if user use keyboard, isUsingKeyboard = true
   document.addEventListener('keydown', function () {
     isUsingKeyboard = true;
   });
-
+  // if user use mouse to click, isUsingKeyboard = false
   document.addEventListener('mousedown', function () {
     isUsingKeyboard = false;
   });
+
   document.addEventListener('focusin', function (event) {
+    // if user use keyboard
     if (isUsingKeyboard) {
+      // anf if focused element is img or video
       if (
         event.target.matches(
           '#media-section figure img, #media-section figure video'
         )
       ) {
+        // style of element border = 2px solid blue
         event.target.style.border = '2px solid blue';
       }
     }
   });
-
+  // if element is not focused
   document.addEventListener('focusout', function (event) {
     if (
+      // anf if focused element is img or video
       event.target.matches(
         '#media-section figure img, #media-section figure video'
       )
     ) {
+      // style of element boder = none
       event.target.style.border = 'none';
     }
   });
