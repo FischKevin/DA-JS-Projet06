@@ -12,6 +12,8 @@ export function showMediaInLightbox(src, title, type = 'image') {
   const lightBoxModalClose = document.createElement('i');
   lightBoxModalClose.className = 'lightBoxModalClose';
   lightBoxModalClose.setAttribute('id', 'lightBoxModalClose');
+  lightBoxModalClose.setAttribute('role', 'button');
+  lightBoxModalClose.setAttribute('aria-label', 'Fermer la lightbox');
   lightBoxModalClose.classList.add('fa-solid');
   lightBoxModalClose.classList.add('fa-close');
   const lightBoxContent = document.createElement('div');
@@ -20,6 +22,8 @@ export function showMediaInLightbox(src, title, type = 'image') {
   lightBoxPrev.className = 'lightBoxPrev';
   lightBoxPrev.classList.add('fa-solid');
   lightBoxPrev.classList.add('fa-chevron-left');
+  lightBoxPrev.setAttribute('aria-label', 'Image précédente');
+  lightBoxPrev.setAttribute('role', 'button');
   lightBoxPrev.addEventListener('click', showPreviousMediaInLightBox);
   const lightBoxPicture = document.createElement('figure');
   lightBoxPicture.className = 'lightBoxPicture';
@@ -29,6 +33,7 @@ export function showMediaInLightbox(src, title, type = 'image') {
     const lightBoxPictureSource = document.createElement('img');
     lightBoxPictureSource.setAttribute('src', src);
     lightBoxPictureSource.setAttribute('alt', title);
+    lightBoxPictureSource.setAttribute('aria-label', title);
     lightBoxPictureSource.className = 'lightBoxPictureSource';
     lightBoxPicture.appendChild(lightBoxPictureSource);
   } else if (type === 'video') {
@@ -37,6 +42,7 @@ export function showMediaInLightbox(src, title, type = 'image') {
     const lightBoxVideoSource = document.createElement('source');
     lightBoxVideoSource.setAttribute('src', src);
     lightBoxVideoSource.setAttribute('type', 'video/mp4');
+    lightBoxVideo.setAttribute('aria-label', title);
     lightBoxVideo.appendChild(lightBoxVideoSource);
     lightBoxPicture.appendChild(lightBoxVideo);
   }
@@ -48,6 +54,8 @@ export function showMediaInLightbox(src, title, type = 'image') {
   lightBoxNext.className = 'lightBoxNext';
   lightBoxNext.classList.add('fa-solid');
   lightBoxNext.classList.add('fa-chevron-right');
+  lightBoxNext.setAttribute('aria-label', 'Image suivante');
+  lightBoxNext.setAttribute('role', 'button');
   lightBoxNext.addEventListener('click', showNextMediaInLightBox);
   document.body.appendChild(lightBoxModal);
   lightBoxModal.appendChild(lightBoxContent);
@@ -57,11 +65,21 @@ export function showMediaInLightbox(src, title, type = 'image') {
   lightBoxContent.appendChild(lightBoxNext);
   lightBoxPicture.appendChild(lightBoxPictureCaption);
 
-  lightBoxContent.focus();
+  lightBoxPicture.focus();
 
   lightBoxModalCloseButton = lightBoxModal.querySelector('.lightBoxModalClose');
   lightBoxModalCloseButton.addEventListener('click', closeLightBox);
+  document.addEventListener('keydown', handleKeyDown);
 }
+
+// keyboard navigation
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'ArrowLeft') {
+    showPreviousMediaInLightBox();
+  } else if (e.key === 'ArrowRight') {
+    showNextMediaInLightBox();
+  }
+});
 
 // remove event listeners
 function removeLightBoxListeners() {
@@ -77,6 +95,18 @@ function closeLightBox() {
   if (lightBox) {
     lightBox.remove();
     removeLightBoxListeners();
+    document.removeEventListener('keydown', handleKeyDown);
+  }
+  const firstMediaElement = document.querySelector('.photographerMedia');
+  if (firstMediaElement) {
+    firstMediaElement.focus();
+  }
+}
+
+// close lightbox by pressin Esc key
+function handleKeyDown(event) {
+  if (event.key === 'Escape' || event.key === 'Esc') {
+    closeLightBox();
   }
 }
 
