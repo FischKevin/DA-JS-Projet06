@@ -79,6 +79,18 @@
   padding-top: 5px;
 }
 
+#media-section figure .div-title-likes .likeHeart {
+  border: 2px solid transparent;
+  border-radius: 2px;
+  outline: none;
+}
+
+#media-section figure .div-title-likes .likeHeart:focus {
+  border: 2px solid blue;
+  border-radius: 2px;
+  outline: none;
+}
+
 #media-section figure h2,
 #media-section figure figcaption {
   color: var(--primary-color);
@@ -93,8 +105,14 @@
   object-fit: cover;
   overflow: visible;
   cursor: pointer;
-  border: 2px solid transparent;
   border-radius: 2%;
+  box-sizing: border-box;
+}
+
+#media-section figure img:focus,
+#media-section figure video:focus {
+  outline: 2px solid blue;
+  outline-offset: -2px;
 }
 
 .custom-select {

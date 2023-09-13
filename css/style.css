@@ -3,6 +3,7 @@
 * {
   --primary-color: #901C1C;
   --secondary-color: ##D3573C;
+  border: none;
 }
 
 body {
