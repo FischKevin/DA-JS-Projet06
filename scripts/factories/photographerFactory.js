@@ -11,11 +11,14 @@ export function photographerFactory(data) {
       // creation of link around the picture
       const pictureLink = document.createElement('a');
       pictureLink.setAttribute('href', `./photographer.html?id=${id}`);
-      pictureLink.setAttribute('role', 'link');
+      // pictureLink.setAttribute('role', 'link');
       pictureLink.setAttribute('aria-label', `${name}`);
+      pictureLink.setAttribute('tabindex', '-1');
       // creation of a wrapper around the picture to resize picture
       const wrapper = document.createElement('div');
       wrapper.classList.add('wrapper');
+      wrapper.setAttribute('tabindex', '0');
+      wrapper.setAttribute('role', 'link');
       // creation of the picture
       const img = document.createElement('img');
       img.setAttribute('src', picture);

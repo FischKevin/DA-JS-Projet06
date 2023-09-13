@@ -58,6 +58,12 @@ a {
 .photographer_section .wrapper {
   overflow: hidden;
   border-radius: 100%;
+  border: 2px solid transparent;
+}
+
+.photographer_section .wrapper:focus {
+  border: 2px solid blue;
+  outline: none;
 }
 
 .photographer_section article {

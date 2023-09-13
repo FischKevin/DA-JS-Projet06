@@ -24,9 +24,11 @@ export function showMediaInLightbox(src, title, type = 'image') {
   lightBoxPrev.classList.add('fa-chevron-left');
   lightBoxPrev.setAttribute('aria-label', 'Image précédente');
   lightBoxPrev.setAttribute('role', 'button');
+  lightBoxPrev.setAttribute('tabindex', '0');
   lightBoxPrev.addEventListener('click', showPreviousMediaInLightBox);
   const lightBoxPicture = document.createElement('figure');
   lightBoxPicture.className = 'lightBoxPicture';
+  lightBoxPicture.setAttribute('tabindex', '0');
 
   // display image or video depending on the source
   if (type === 'image') {
@@ -34,6 +36,7 @@ export function showMediaInLightbox(src, title, type = 'image') {
     lightBoxPictureSource.setAttribute('src', src);
     lightBoxPictureSource.setAttribute('alt', title);
     lightBoxPictureSource.setAttribute('aria-label', title);
+    lightBoxPictureSource.setAttribute('tabindex', '0');
     lightBoxPictureSource.className = 'lightBoxPictureSource';
     lightBoxPicture.appendChild(lightBoxPictureSource);
   } else if (type === 'video') {
@@ -43,6 +46,7 @@ export function showMediaInLightbox(src, title, type = 'image') {
     lightBoxVideoSource.setAttribute('src', src);
     lightBoxVideoSource.setAttribute('type', 'video/mp4');
     lightBoxVideo.setAttribute('aria-label', title);
+    lightBoxVideo.setAttribute('tabindex', '0');
     lightBoxVideo.appendChild(lightBoxVideoSource);
     lightBoxPicture.appendChild(lightBoxVideo);
   }
@@ -56,6 +60,7 @@ export function showMediaInLightbox(src, title, type = 'image') {
   lightBoxNext.classList.add('fa-chevron-right');
   lightBoxNext.setAttribute('aria-label', 'Image suivante');
   lightBoxNext.setAttribute('role', 'button');
+  lightBoxNext.setAttribute('tabindex', '0');
   lightBoxNext.addEventListener('click', showNextMediaInLightBox);
   document.body.appendChild(lightBoxModal);
   lightBoxModal.appendChild(lightBoxContent);
@@ -65,7 +70,10 @@ export function showMediaInLightbox(src, title, type = 'image') {
   lightBoxContent.appendChild(lightBoxNext);
   lightBoxPicture.appendChild(lightBoxPictureCaption);
 
-  lightBoxPicture.focus();
+  lightBoxModal.focus();
+
+  document.querySelector('header').setAttribute('aria-hidden', 'true');
+  document.querySelector('main').setAttribute('aria-hidden', 'true');
 
   lightBoxModalCloseButton = lightBoxModal.querySelector('.lightBoxModalClose');
   lightBoxModalCloseButton.addEventListener('click', closeLightBox);

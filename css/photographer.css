@@ -97,11 +97,6 @@
   border-radius: 2%;
 }
 
-#media-section figure img:focus,
-#media-section figure video:focus {
-  border: 2px solid blue;
-}
-
 .custom-select {
   position: relative;
   bottom: 90px;
