@@ -84,11 +84,16 @@
   border-radius: 2px;
   outline: none;
 }
-
 #media-section figure .div-title-likes .likeHeart:focus {
-  border: 2px solid blue;
+  border: 2px solid var(--secondary-color);
   border-radius: 2px;
   outline: none;
+  overflow: hidden;
+}
+
+#media-section figure .div-title-likes .likeHeart:hover{
+  transform: scale(1.18);
+  transition: .15s ease-in-out;
 }
 
 #media-section figure h2,

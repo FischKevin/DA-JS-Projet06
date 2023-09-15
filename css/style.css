@@ -59,13 +59,14 @@ a {
 .photographer_section .wrapper {
   overflow: hidden;
   border-radius: 100%;
-  border: 3px solid transparent;
+  outline: 3px solid transparent;
+  transition: outline-color 0.2s ease-out;
 }
 
 .photographer_section .wrapper:hover,
-.photographer_section .wrapper:focus{
-  border: 3px solid var(--secondary-color);
-  outline: none;
+.photographer_section .wrapper:focus-visible{
+  outline-color: var(--secondary-color);
+  transition: outline-color 0.2s ease-in; 
 }
 
 .photographer_section article {
@@ -74,7 +75,7 @@ a {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .photographer_section article h2 {
