@@ -1,4 +1,5 @@
 import { showMediaInLightbox } from '../utils/lightBox.js';
+import { likeMedia } from '../utils/likes.js';
 
 //function to create media objects
 export function mediaFactory(data) {
@@ -78,6 +79,12 @@ export function mediaFactory(data) {
       heart.setAttribute('aria-label', 'like');
       heart.setAttribute('tabindex', '0');
       heart.style.cursor = 'pointer';
+      heart.addEventListener('click', likeMedia);
+      heart.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          likeMedia(event);
+        }
+      });
 
       divTitleLikes.appendChild(pictureTitle);
       likesAndHeart.appendChild(pictureLikes);
