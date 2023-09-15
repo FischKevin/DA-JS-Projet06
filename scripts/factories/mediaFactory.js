@@ -76,7 +76,7 @@ export function mediaFactory(data) {
       heart.style.fontSize = '22px';
       heart.style.margin = '4px 0 0 5px';
       heart.setAttribute('role', 'button');
-      heart.setAttribute('aria-label', 'like');
+      heart.setAttribute('aria-label', "J'aime");
       heart.setAttribute('tabindex', '0');
       heart.style.cursor = 'pointer';
       heart.addEventListener('click', likeMedia);

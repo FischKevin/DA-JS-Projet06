@@ -11,7 +11,6 @@ export function photographerFactory(data) {
       // creation of link around the picture
       const pictureLink = document.createElement('a');
       pictureLink.setAttribute('href', `./photographer.html?id=${id}`);
-      // pictureLink.setAttribute('role', 'link');
       pictureLink.setAttribute('aria-label', `${name}`);
       pictureLink.setAttribute('tabindex', '-1');
       // creation of a wrapper around the picture to resize picture
@@ -23,6 +22,7 @@ export function photographerFactory(data) {
       const img = document.createElement('img');
       img.setAttribute('src', picture);
       img.setAttribute('alt', `${name}`);
+      img.setAttribute('aria-label', `Page de ${name}`);
       // creation of the name block
       const h2 = document.createElement('h2');
       h2.textContent = name;
