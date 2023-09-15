@@ -14,6 +14,7 @@ export function showMediaInLightbox(src, title, type = 'image') {
   lightBoxModalClose.setAttribute('id', 'lightBoxModalClose');
   lightBoxModalClose.setAttribute('role', 'button');
   lightBoxModalClose.setAttribute('aria-label', 'Fermer la lightbox');
+  lightBoxModalClose.setAttribute('tabindex', '-1');
   lightBoxModalClose.classList.add('fa-solid');
   lightBoxModalClose.classList.add('fa-close');
   const lightBoxContent = document.createElement('div');
@@ -28,7 +29,7 @@ export function showMediaInLightbox(src, title, type = 'image') {
   lightBoxPrev.addEventListener('click', showPreviousMediaInLightBox);
   const lightBoxPicture = document.createElement('figure');
   lightBoxPicture.className = 'lightBoxPicture';
-  lightBoxPicture.setAttribute('tabindex', '0');
+  // lightBoxPicture.setAttribute('tabindex', '0');
 
   // display image or video depending on the source
   if (type === 'image') {
@@ -36,7 +37,7 @@ export function showMediaInLightbox(src, title, type = 'image') {
     lightBoxPictureSource.setAttribute('src', src);
     lightBoxPictureSource.setAttribute('alt', title);
     lightBoxPictureSource.setAttribute('aria-label', title);
-    lightBoxPictureSource.setAttribute('tabindex', '0');
+    // lightBoxPictureSource.setAttribute('tabindex', '0');
     lightBoxPictureSource.className = 'lightBoxPictureSource';
     lightBoxPicture.appendChild(lightBoxPictureSource);
   } else if (type === 'video') {
@@ -46,7 +47,7 @@ export function showMediaInLightbox(src, title, type = 'image') {
     lightBoxVideoSource.setAttribute('src', src);
     lightBoxVideoSource.setAttribute('type', 'video/mp4');
     lightBoxVideo.setAttribute('aria-label', title);
-    lightBoxVideo.setAttribute('tabindex', '0');
+    // lightBoxVideo.setAttribute('tabindex', '0');
     lightBoxVideo.appendChild(lightBoxVideoSource);
     lightBoxPicture.appendChild(lightBoxVideo);
   }
@@ -54,6 +55,8 @@ export function showMediaInLightbox(src, title, type = 'image') {
   const lightBoxPictureCaption = document.createElement('figcaption');
   lightBoxPictureCaption.innerHTML = title;
   lightBoxPictureCaption.className = 'lightBoxPictureCaption';
+  lightBoxPictureCaption.setAttribute('tabindex', '0');
+  lightBoxPictureCaption.setAttribute('role', 'button');
   const lightBoxNext = document.createElement('i');
   lightBoxNext.className = 'lightBoxNext';
   lightBoxNext.classList.add('fa-solid');
@@ -70,10 +73,29 @@ export function showMediaInLightbox(src, title, type = 'image') {
   lightBoxContent.appendChild(lightBoxNext);
   lightBoxPicture.appendChild(lightBoxPictureCaption);
 
-  lightBoxModal.focus();
+  lightBoxPictureCaption.focus();
+
+  // make elements outside of the lightbox not focusable, readable, and selectable
+  let elementsList = [
+    'header',
+    'main',
+    '.footer',
+    '.photographerMedia',
+    '.likeHeart',
+  ];
+
+  for (let selector of elementsList) {
+    let elements = document.querySelectorAll(selector);
+    for (let elem of elements) {
+      elem.setAttribute('tabindex', '-1');
+      elem.setAttribute('aria-hidden', 'true');
+    }
+  }
 
   document.querySelector('header').setAttribute('aria-hidden', 'true');
   document.querySelector('main').setAttribute('aria-hidden', 'true');
+  document.querySelector('header').setAttribute('tabindex', '-1');
+  document.querySelector('main').setAttribute('tabindex', '-1');
 
   lightBoxModalCloseButton = lightBoxModal.querySelector('.lightBoxModalClose');
   lightBoxModalCloseButton.addEventListener('click', closeLightBox);
@@ -109,6 +131,24 @@ function closeLightBox() {
   if (firstMediaElement) {
     firstMediaElement.focus();
   }
+
+  let elementsList = [
+    'header',
+    'main',
+    '.footer',
+    '.photographerMedia',
+    '.likeHeart',
+  ];
+
+  for (let selector of elementsList) {
+    let elements = document.querySelectorAll(selector);
+    for (let elem of elements) {
+      elem.setAttribute('tabindex', '0');
+      elem.setAttribute('aria-hidden', 'false');
+    }
+  }
+  document.querySelector('header').setAttribute('aria-hidden', 'false');
+  document.querySelector('main').setAttribute('aria-hidden', 'false');
 }
 
 // close lightbox by pressin Esc key
@@ -140,7 +180,10 @@ function showNextMediaInLightBox() {
     globalState.mediaClickedIndex = nextMediaIndex;
     closeLightBox();
     showMediaInLightbox(src, title, type, nextMediaElement);
+    // clearMediaContent();
+    // showMediaInLightbox(src, title, type, nextMediaElement);
   }
+  // lightBoxPicture.focus();
 }
 
 // function to show previous media in lightbox
@@ -166,5 +209,18 @@ function showPreviousMediaInLightBox() {
     globalState.mediaClickedIndex = previousMediaIndex;
     closeLightBox();
     showMediaInLightbox(src, title, type, previousMediaElement);
+    // clearMediaContent();
+    // showMediaInLightbox(src, title, type, previousMediaElement);
   }
+  // lightBoxPicture.focus();
 }
+
+// function clearMediaContent() {
+//   const lightBox = document.getElementById('lightBox');
+//   if (lightBox) {
+//     const lightBoxContent = lightBox.querySelector('.lightBoxContent');
+//     if (lightBoxContent) {
+//       lightBoxContent.remove();
+//     }
+//   }
+// }

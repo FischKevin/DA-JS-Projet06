@@ -401,6 +401,11 @@ form textarea {
   color: var(--primary-color);
 }
 
+.lightBoxPrev:focus,
+.lightBoxNext:focus {
+  outline: 2px solid blue;
+}
+
 .lightBoxNext {
   margin: 0 30px 0 10px;
 }
