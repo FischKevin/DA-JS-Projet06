@@ -77,23 +77,28 @@
   background: white;
   margin-top: -5px;
   padding-top: 5px;
+  height: 40px;
+}
+
+#media-section figure .likeContainer {
+  padding-right: 3px;
 }
 
 #media-section figure .div-title-likes .likeHeart {
-  border: 2px solid transparent;
-  border-radius: 2px;
+  padding: 2px 3px 1px 3px;
   outline: none;
+  height: 24px;
+  transition: .15s ease-out;
 }
-#media-section figure .div-title-likes .likeHeart:focus {
-  border: 2px solid var(--secondary-color);
-  border-radius: 2px;
-  outline: none;
-  overflow: hidden;
+#media-section figure .div-title-likes .likeHeart:hover {
+  transform: scale(1.18);
+  transition: .15s ease-in;
 }
 
-#media-section figure .div-title-likes .likeHeart:hover{
-  transform: scale(1.18);
-  transition: .15s ease-in-out;
+#media-section figure .div-title-likes .likeHeart:focus-visible{
+  box-shadow: #d3573c 0px 0px 0px 2px inset;
+  outline: none;
+  overflow: hidden;
 }
 
 #media-section figure h2,
