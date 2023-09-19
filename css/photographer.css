@@ -96,9 +96,10 @@
 }
 
 #media-section figure .div-title-likes .likeHeart:focus-visible{
-  box-shadow: #d3573c 0px 0px 0px 2px inset;
   outline: none;
   overflow: hidden;
+  transform: scale(1.18);
+  transition: .15s ease-in;
 }
 
 #media-section figure h2,
@@ -113,16 +114,20 @@
   height: 350px;
   width: 350px;
   object-fit: cover;
-  overflow: visible;
+  overflow: hidden;
   cursor: pointer;
   border-radius: 2%;
   box-sizing: border-box;
+  border: 2px solid transparent;
+  transition: .15s ease-out;
 }
 
-#media-section figure img:focus,
-#media-section figure video:focus {
-  outline: 2px solid blue;
-  outline-offset: -2px;
+#media-section figure img:hover,
+#media-section figure video:hover,
+#media-section figure img:focus-visible,
+#media-section figure video:focus-visible {
+  border: 2px solid var(--secondary-color);
+  transition: .15s ease-in
 }
 
 .custom-select {
@@ -161,6 +166,10 @@
   font-weight: 900; 
   display: inline-block;
   transition: transform 0.3s;
+}
+
+.custom-select .selected-option:focus-visible {
+  outline:2px solid var(--secondary-color);
 }
 
 .custom-select .options {
@@ -245,12 +254,15 @@
   background-color: var(--primary-color);
   border-radius: 5px;
   cursor: pointer;
+  transition: .15s ease-out;
 }
 
 .contact_button:hover,
-.contact_button:focus {
+.contact_button:focus-visible {
   color: #000000;
   background-color: #DB8876;
+  transition: .15s ease-in;
+  outline: none;
 }
 
 .photograph-header .contact_button {
@@ -375,7 +387,7 @@ form textarea {
 }
 
 #submit_button:hover,
-#submit_button:focus {
+#submit_button:focus-visible {
   border: 1px solid #000000;
 }
 
@@ -409,19 +421,24 @@ form textarea {
   cursor: pointer;
   position: relative;
   color: var(--primary-color);
+  transition: .15s ease-in;
 }
 
-.lightBoxPrev:focus,
-.lightBoxNext:focus {
-  outline: 2px solid blue;
+.lightBoxPrev:focus-visible,
+.lightBoxNext:focus-visible {
+  outline: 2px solid var(--secondary-color);
+  border-radius: 10%;
+  transition: .15s ease-out;
 }
 
 .lightBoxNext {
   margin: 0 30px 0 10px;
+  padding-right: 4px;
 }
 
 .lightBoxPrev {
   margin: 0 10px 0 30px;
+  padding-left: 4px;
 }
 
 .lightBoxPicture {
@@ -450,4 +467,13 @@ form textarea {
   font-size: 22px;
   text-align: left;
   margin-top: 15px;
+  outline: 2px solid transparent;
+  border-radius: 5px;
+  padding: 1px 5px;
+  transition: .15s ease-in;
+}
+
+.lightBoxPictureCaption:focus-visible {
+  outline: 2px solid var(--secondary-color);
+  transition: .15s ease-out;
 }

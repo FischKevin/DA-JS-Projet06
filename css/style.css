@@ -4,6 +4,7 @@
   --primary-color: #901C1C;
   --secondary-color: #D3573C;
   border: none;
+  outline: none;
 }
 
 body {
@@ -44,6 +45,10 @@ a {
 .logo {
   height: 50px;
   margin-left: 100px;
+}
+
+header a:focus {
+  outline: 2px solid var(--secondary-color);
 }
 
 .photographer_section {
