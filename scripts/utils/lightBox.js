@@ -29,7 +29,6 @@ export function showMediaInLightbox(src, title, type = 'image') {
   lightBoxPrev.addEventListener('click', showPreviousMediaInLightBox);
   const lightBoxPicture = document.createElement('figure');
   lightBoxPicture.className = 'lightBoxPicture';
-  // lightBoxPicture.setAttribute('tabindex', '0');
 
   // display image or video depending on the source
   if (type === 'image') {
@@ -37,7 +36,6 @@ export function showMediaInLightbox(src, title, type = 'image') {
     lightBoxPictureSource.setAttribute('src', src);
     lightBoxPictureSource.setAttribute('alt', title);
     lightBoxPictureSource.setAttribute('aria-label', title);
-    // lightBoxPictureSource.setAttribute('tabindex', '0');
     lightBoxPictureSource.className = 'lightBoxPictureSource';
     lightBoxPicture.appendChild(lightBoxPictureSource);
   } else if (type === 'video') {
@@ -47,7 +45,6 @@ export function showMediaInLightbox(src, title, type = 'image') {
     lightBoxVideoSource.setAttribute('src', src);
     lightBoxVideoSource.setAttribute('type', 'video/mp4');
     lightBoxVideo.setAttribute('aria-label', title);
-    // lightBoxVideo.setAttribute('tabindex', '0');
     lightBoxVideo.appendChild(lightBoxVideoSource);
     lightBoxPicture.appendChild(lightBoxVideo);
   }
@@ -72,6 +69,18 @@ export function showMediaInLightbox(src, title, type = 'image') {
   lightBoxContent.appendChild(lightBoxPicture);
   lightBoxContent.appendChild(lightBoxNext);
   lightBoxPicture.appendChild(lightBoxPictureCaption);
+
+  lightBoxPrev.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      showPreviousMediaInLightBox();
+    }
+  });
+
+  lightBoxNext.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      showNextMediaInLightBox();
+    }
+  });
 
   lightBoxPictureCaption.focus();
 
@@ -151,7 +160,7 @@ function closeLightBox() {
   document.querySelector('main').setAttribute('aria-hidden', 'false');
 }
 
-// close lightbox by pressin Esc key
+// close lightbox by pressing Esc key
 function handleKeyDown(event) {
   if (event.key === 'Escape' || event.key === 'Esc') {
     closeLightBox();
@@ -180,10 +189,7 @@ function showNextMediaInLightBox() {
     globalState.mediaClickedIndex = nextMediaIndex;
     closeLightBox();
     showMediaInLightbox(src, title, type, nextMediaElement);
-    // clearMediaContent();
-    // showMediaInLightbox(src, title, type, nextMediaElement);
   }
-  // lightBoxPicture.focus();
 }
 
 // function to show previous media in lightbox
@@ -209,18 +215,5 @@ function showPreviousMediaInLightBox() {
     globalState.mediaClickedIndex = previousMediaIndex;
     closeLightBox();
     showMediaInLightbox(src, title, type, previousMediaElement);
-    // clearMediaContent();
-    // showMediaInLightbox(src, title, type, previousMediaElement);
   }
-  // lightBoxPicture.focus();
 }
-
-// function clearMediaContent() {
-//   const lightBox = document.getElementById('lightBox');
-//   if (lightBox) {
-//     const lightBoxContent = lightBox.querySelector('.lightBoxContent');
-//     if (lightBoxContent) {
-//       lightBoxContent.remove();
-//     }
-//   }
-// }
