@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // attach click event listener to display the contact modal
   contactButton.addEventListener('click', displayModal);
 
-  // function to asynchronously display the contact modal and populate photographer's name
+  // asynchronously display the contact modal and populate photographer's name
   async function displayModal() {
     const modal = document.getElementById('contact_modal');
     modal.style.display = 'block';
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     contactTitleWording.innerText = `${photographer.name}`;
   }
 
-  // function to close the contact modal and clear the form fields
+  // close the contact modal and clear the form fields
   function closeModal() {
     const modal = document.getElementById('contact_modal');
     modal.style.display = 'none';
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeCross = document.getElementById('closeCross');
   closeCross.addEventListener('click', closeModal);
 
-  // function to handle form submission
+  // handle form submission
   function submitForm(event) {
     event.preventDefault();
     const formResult = {

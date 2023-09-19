@@ -1,10 +1,12 @@
 import { getMediaCollectionSize } from '../pages/photographer.js';
 import { globalState } from '../utils/globalState.js';
 
+// Variable to keep a reference to the lightbox's close button
 let lightBoxModalCloseButton = null;
 
-// function to open lightbox and display ui
+// open the lightbox and display content
 export function showMediaInLightbox(src, title, type = 'image') {
+  // creating the lightbox modal
   const lightBoxModal = document.createElement('div');
   lightBoxModal.setAttribute('role', 'modal');
   lightBoxModal.setAttribute('id', 'lightBox');
@@ -30,7 +32,7 @@ export function showMediaInLightbox(src, title, type = 'image') {
   const lightBoxPicture = document.createElement('figure');
   lightBoxPicture.className = 'lightBoxPicture';
 
-  // display image or video depending on the source
+  // display image or video depending on the type
   if (type === 'image') {
     const lightBoxPictureSource = document.createElement('img');
     lightBoxPictureSource.setAttribute('src', src);
@@ -70,6 +72,7 @@ export function showMediaInLightbox(src, title, type = 'image') {
   lightBoxContent.appendChild(lightBoxNext);
   lightBoxPicture.appendChild(lightBoxPictureCaption);
 
+  // add event listeners for keyboard navigation and focus
   lightBoxPrev.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       showPreviousMediaInLightBox();
@@ -84,7 +87,7 @@ export function showMediaInLightbox(src, title, type = 'image') {
 
   lightBoxPictureCaption.focus();
 
-  // make elements outside of the lightbox not focusable, readable, and selectable
+  // make elements outside the lightbox non-focusable and hidden from screen readers
   let elementsList = [
     'header',
     'main',
@@ -106,12 +109,13 @@ export function showMediaInLightbox(src, title, type = 'image') {
   document.querySelector('header').setAttribute('tabindex', '-1');
   document.querySelector('main').setAttribute('tabindex', '-1');
 
+  // add event listeners for closing the lightbox
   lightBoxModalCloseButton = lightBoxModal.querySelector('.lightBoxModalClose');
   lightBoxModalCloseButton.addEventListener('click', closeLightBox);
   document.addEventListener('keydown', handleKeyDown);
 }
 
-// keyboard navigation
+// event listener for keyboard navigation within the lightbox
 document.addEventListener('keydown', function (e) {
   if (e.key === 'ArrowLeft') {
     showPreviousMediaInLightBox();
@@ -120,7 +124,7 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-// remove event listeners
+// remove lightbox event listeners when it's closed
 function removeLightBoxListeners() {
   if (lightBoxModalCloseButton) {
     lightBoxModalCloseButton.removeEventListener('click', closeLightBox);
@@ -131,16 +135,19 @@ function removeLightBoxListeners() {
 // function to close the lightbox
 function closeLightBox() {
   const lightBox = document.getElementById('lightBox');
+  // remove the lightbox from the DOM
   if (lightBox) {
     lightBox.remove();
     removeLightBoxListeners();
     document.removeEventListener('keydown', handleKeyDown);
   }
+  // refocus on the first media element
   const firstMediaElement = document.querySelector('.photographerMedia');
   if (firstMediaElement) {
     firstMediaElement.focus();
   }
 
+  // make elements outside the lightbox focusable again
   let elementsList = [
     'header',
     'main',
@@ -167,8 +174,9 @@ function handleKeyDown(event) {
   }
 }
 
-// function to show next media in lightbox
+// show next media in lightbox
 function showNextMediaInLightBox() {
+  // use the index of the currently displayed media to determine the next media
   if (globalState.mediaClickedIndex !== -1) {
     const nextMediaIndex =
       (globalState.mediaClickedIndex + 1) % getMediaCollectionSize();
@@ -186,14 +194,18 @@ function showNextMediaInLightBox() {
     const type =
       nextMediaElement.tagName.toLowerCase() === 'img' ? 'image' : 'video';
 
+    // update the clicked media index
     globalState.mediaClickedIndex = nextMediaIndex;
+
+    // close and reopen the lightbox with the new media
     closeLightBox();
     showMediaInLightbox(src, title, type, nextMediaElement);
   }
 }
 
-// function to show previous media in lightbox
+// show previous media in lightbox
 function showPreviousMediaInLightBox() {
+  // use the index of the currently displayed media to determine the previous media
   if (globalState.mediaClickedIndex !== -1) {
     const previousMediaIndex =
       (globalState.mediaClickedIndex - 1 + getMediaCollectionSize()) %
@@ -212,7 +224,10 @@ function showPreviousMediaInLightBox() {
     const type =
       previousMediaElement.tagName.toLowerCase() === 'img' ? 'image' : 'video';
 
+    // update the clicked media index
     globalState.mediaClickedIndex = previousMediaIndex;
+
+    // close and reopen the lightbox with the new media
     closeLightBox();
     showMediaInLightbox(src, title, type, previousMediaElement);
   }
