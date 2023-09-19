@@ -1,17 +1,16 @@
 import { mediaFactory } from '../factories/mediaFactory.js';
 import { globalState } from '../utils/globalState.js';
 
+// local state variables
 let mediaClickedIndex;
 let media = globalState.media;
 
-let isUsingKeyboard = false;
-
-// get the photographer id part of the url
+// extract photographer id from the current URL
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const photographerId = urlParams.get('id');
 
-// fetch json to get photographers and media data
+// fetch and return photographer and media data based on photographer's ID
 export async function getPhotographer() {
   return fetch('./data/photographers.json')
     .then((res) => res.json())
@@ -26,7 +25,7 @@ export async function getPhotographer() {
     });
 }
 
-// function to display photographer data in the header
+// populate the header with photographer details
 async function displayPhotographData(photographerData) {
   const picture = `./assets/images/photographers/00-Portraits/${photographerData.portrait}`;
   const photographPicture = document.getElementById('photographPicture');
@@ -46,7 +45,7 @@ async function displayPhotographData(photographerData) {
   priceBlock.textContent = `${photographerData.price}€ / jour`;
 }
 
-// function to add every likes on medias and return it
+// calculate and return the total likes for the displayed media
 function getTotalLikesCount() {
   const pictureLikesElements = document.querySelectorAll('.nblikes');
   let totalLikesCount = 0;
@@ -58,13 +57,13 @@ function getTotalLikesCount() {
   return totalLikesCount;
 }
 
-// function to display the price and like block at the bottom of the page
+// display the price and total like count at the bottom of the page
 async function displayPriceAndLikeData(photographerData) {
   const priceBlock = document.getElementById('priceBlock');
   priceBlock.textContent = `${photographerData.price}€ / jour`;
 }
 
-// function to display media galery and total like number, and attach event listeners
+// display media gallery, update the total like count, and attach event listeners
 export async function displayMediaData() {
   const mediaSection = document.getElementById('media-section');
   mediaSection.innerHTML = '';
@@ -94,13 +93,13 @@ export async function displayMediaData() {
     });
 }
 
-// function to get the size of the media collection
+// return the count of all media items in the collection
 export function getMediaCollectionSize() {
   const mediaCollection = document.querySelectorAll('.photographerMedia');
   return mediaCollection.length;
 }
 
-// function to get the index of the media clicked
+// get the index of the media item that was clicked on
 export function getMediaClickedIndex(event) {
   if (!event.target.classList.contains('photographerMedia')) return;
 
@@ -114,7 +113,7 @@ export function getMediaClickedIndex(event) {
   return mediaClickedIndex;
 }
 
-// function to sort and display media
+// initialize the photographer page with sorted media, display photographer details, and attach global event listeners
 async function init() {
   const { photographer, media: retrievedMedia } = await getPhotographer();
   media = retrievedMedia.sort((a, b) => b.likes - a.likes);
@@ -122,41 +121,6 @@ async function init() {
   displayPhotographData(photographer);
   displayPriceAndLikeData(photographer);
   displayMediaData(media);
-  // if user use keyboard, isUsingKeyboard = true
-  document.addEventListener('keydown', function () {
-    isUsingKeyboard = true;
-  });
-  // if user use mouse to click, isUsingKeyboard = false
-  document.addEventListener('mousedown', function () {
-    isUsingKeyboard = false;
-  });
-
-  document.addEventListener('focusin', function (event) {
-    // if user use keyboard
-    if (isUsingKeyboard) {
-      // anf if focused element is img or video
-      if (
-        event.target.matches(
-          '#media-section figure img, #media-section figure video'
-        )
-      ) {
-        // style of element border = 2px solid blue
-        event.target.style.border = '2px solid blue';
-      }
-    }
-  });
-  // if element is not focused
-  document.addEventListener('focusout', function (event) {
-    if (
-      // anf if focused element is img or video
-      event.target.matches(
-        '#media-section figure img, #media-section figure video'
-      )
-    ) {
-      // style of element boder = none
-      event.target.style.border = 'none';
-    }
-  });
 }
 
 init();
