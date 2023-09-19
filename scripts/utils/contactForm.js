@@ -1,6 +1,8 @@
 import { getPhotographer } from '../pages/photographer.js';
 
+// initial setup when the document is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+  // get DOM elements related to the contact form
   const firstName = document.getElementById('firstName');
   const lastName = document.getElementById('lastName');
   const email = document.getElementById('email');
@@ -8,12 +10,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const contactButton = document.getElementById('contactButton');
   const form = document.getElementById('contactForm');
 
-  // function do display contact modal
+  // attach click event listener to display the contact modal
+  contactButton.addEventListener('click', displayModal);
+
+  // function to asynchronously display the contact modal and populate photographer's name
   async function displayModal() {
     const modal = document.getElementById('contact_modal');
     modal.style.display = 'block';
     modal.setAttribute('aria-hidden', 'false');
     firstName.focus();
+
+    // fetch photographer's name and update modal's title
     const contactTitleWording = document.getElementById(
       'contact-title-wording2'
     );
@@ -21,9 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const photographer = data.photographer;
     contactTitleWording.innerText = `${photographer.name}`;
   }
-  contactButton.addEventListener('click', displayModal);
 
-  // function to close contact modal
+  // function to close the contact modal and clear the form fields
   function closeModal() {
     const modal = document.getElementById('contact_modal');
     modal.style.display = 'none';
@@ -34,10 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.setAttribute('aria-hidden', 'true');
     contactButton.focus();
   }
+
+  // attach click event listener to the close button of the modal
   const closeCross = document.getElementById('closeCross');
   closeCross.addEventListener('click', closeModal);
 
-  // function to submit form
+  // function to handle form submission
   function submitForm(event) {
     event.preventDefault();
     const formResult = {
@@ -49,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(formResult);
     closeModal();
 
-    // Show feedback
+    // accessibility : Provide feedback to the user about successful form submission
     const feedbackDiv = document.createElement('div');
     feedbackDiv.innerText = 'Merci! Votre message a été envoyé.';
     feedbackDiv.style.position = 'fixed';
@@ -65,13 +73,16 @@ document.addEventListener('DOMContentLoaded', () => {
     feedbackDiv.setAttribute('aria-live', 'assertive');
     document.body.appendChild(feedbackDiv);
 
+    // remove the feedback message after 3 seconds
     setTimeout(() => {
       feedbackDiv.remove();
     }, 3000);
   }
+
+  // attach form submit event listener
   form.addEventListener('submit', submitForm);
 
-  // accessibility : close modal with escape key
+  // accessibility : close the modal when the 'Escape' key is pressed
   document.addEventListener('keydown', function (event) {
     if (
       event.key === 'Escape' &&
