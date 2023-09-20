@@ -1,50 +1,53 @@
-//function to create a photographer object
+// factory function to create a photographer object based on provided data
 export function photographerFactory(data) {
+  // destructure relevant fields from the provided data object
   const { name, id, city, country, tagline, price, portrait } = data;
 
+  // define the path for the portrait picture
   const picture = `./assets/images/photographers/00-Portraits/${portrait}`;
 
   return {
+    // create a DOM representation for the photographer
     getUserCardDOM: function () {
-      //creation of article block
+      // create the main container for the photographer's card
       const article = document.createElement('article');
-      // creation of link around the picture
+      // create a link surrounding the photographer's portrait
       const pictureLink = document.createElement('a');
       pictureLink.setAttribute('href', `./photographer.html?id=${id}`);
       pictureLink.setAttribute('aria-label', `${name}`);
       pictureLink.setAttribute('tabindex', '-1');
-      // creation of a wrapper around the picture to resize picture
+      // create a wrapper for resizing and positioning the portrait
       const wrapper = document.createElement('div');
       wrapper.classList.add('wrapper');
       wrapper.setAttribute('tabindex', '0');
       wrapper.setAttribute('role', 'link');
-      // creation of the picture
+      // create the portrait image of the photographer
       const img = document.createElement('img');
       img.setAttribute('src', picture);
       img.setAttribute('alt', `${name}`);
       img.setAttribute('aria-label', `Page de ${name}`);
-      // creation of the name block
+      // create the block for the photographer's name
       const h2 = document.createElement('h2');
       h2.textContent = name;
-      // creation of the city + country block
+      // create the block displaying the city and country of the photographer
       const h3 = document.createElement('h3');
       h3.textContent = `${city}, ${country}`;
-      // creation of the tagline block
+      // create the block for the photographer's tagline
       const h4 = document.createElement('h4');
       h4.textContent = tagline;
-      // creation of the price block
+      // create the block displaying the photographer's price per day
       const h5 = document.createElement('h5');
       h5.textContent = `${price}€/jour`;
-      // addition of picture in wrapper block
+
+      // assemble all elements
       wrapper.appendChild(img);
-      // addition of wrapper in pictureLink block
       pictureLink.appendChild(wrapper);
-      // addition of previous elements in article block
       article.appendChild(pictureLink);
       article.appendChild(h2);
       article.appendChild(h3);
       article.appendChild(h4);
       article.appendChild(h5);
+
       return article;
     },
   };
