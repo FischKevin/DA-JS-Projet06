@@ -236,17 +236,20 @@
   z-index: 1;
 }
 
-.likes {
+.likes,
+#priceBlock {
   display: flex;
+  font-size: 24px;
+  font-weight: 500;
 }
 
 .fa-heart {
-  font-size: 22px;
+  font-size: 24px;
 }
 
 .fa-heart-price {
   margin-left: 5px;
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
 .contact_button {
