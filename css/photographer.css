@@ -136,7 +136,7 @@
 
 .custom-select {
   position: absolute;
-  bottom: -70px;
+  top: 330px;
   display: flex;
   z-index: 50;
 }
