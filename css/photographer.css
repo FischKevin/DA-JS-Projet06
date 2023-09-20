@@ -13,6 +13,7 @@
   top: 250px;
   transform: translate(-50%, -50%);
   border-radius: 5px;
+  z-index: 10;
 }
 
 .photograph-header img {
@@ -68,7 +69,6 @@
   padding-bottom: 60px;
   justify-items: center;
   align-items: center;
-  overflow: hidden;
 }
 
 #media-section figure {
@@ -287,7 +287,7 @@
   bottom: 0;
   left: 0;
   background-color: rgba(196, 196, 196, 0.4);
-  z-index: 5;
+  z-index: 20;
 }
 
 .lightBox_Modal {
