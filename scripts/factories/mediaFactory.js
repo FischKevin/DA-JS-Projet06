@@ -22,7 +22,6 @@ export function mediaFactory(data) {
         vid.setAttribute('src', film);
         vid.setAttribute('title', title);
         vid.setAttribute('tabindex', '0');
-        vid.setAttribute('role', 'button');
         vid.setAttribute('aria-label', 'Ouvrir la video dans une lightbox');
         vid.style.maxHeight = '100%';
         vid.style.maxWidth = '350px';
@@ -43,7 +42,6 @@ export function mediaFactory(data) {
         img.setAttribute('src', picture);
         img.setAttribute('alt', title);
         img.setAttribute('tabindex', '0');
-        img.setAttribute('role', 'button');
         img.setAttribute('aria-label', "Ouvrir l'image dans une lightbox");
         img.className = 'photographerMedia';
         img.addEventListener('click', () =>
