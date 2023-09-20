@@ -61,45 +61,111 @@ document.querySelector('.custom-select').addEventListener('click', (event) => {
       option.textContent = option.getAttribute('data-original-content');
     });
 
-    // handle sort menu state based on the clicked option's value
+    // depending on the clicked value (clickedValue), adjust the content, attributes, and visibility of the corresponding elements.
     switch (clickedValue) {
       case 'popularity':
+        // update the content and attributes of the selected element to reflect popularity.
         selectedOptionElem.textContent = 'Popularité';
         selectedOptionElem.dataset.value = 'popularity';
+        selectedOptionElem.setAttribute('aria-label', 'Trier par popularité');
 
+        // hide the popularity option since it's already selected.
         document.querySelector(
           '.option[data-value="popularity"]'
         ).style.display = 'none';
+        document
+          .querySelector('.option[data-value="popularity"]')
+          .setAttribute('tabindex', '-1');
+
+        // show the date option and make it focusable.
         document.querySelector('.option[data-value="date"]').style.display =
           'block';
+        document
+          .querySelector('.option[data-value="date"]')
+          .setAttribute('tabindex', '0');
+        document
+          .querySelector('.option[data-value="date"]')
+          .setAttribute('aria-label', 'Trier par date');
+
+        // show the title option and make it focusable.
         document.querySelector('.option[data-value="title"]').style.display =
           'block';
+        document
+          .querySelector('.option[data-value="title"]')
+          .setAttribute('tabindex', '0');
+        document
+          .querySelector('.option[data-value="title"]')
+          .setAttribute('aria-label', 'Trier par titre');
         break;
 
       case 'date':
+        // update the content and attributes of the selected element to reflect date.
         selectedOptionElem.textContent = 'Date';
         selectedOptionElem.dataset.value = 'date';
+        selectedOptionElem.setAttribute('aria-label', 'Trier par date');
 
+        // hide the date option since it's already selected.
         document.querySelector('.option[data-value="date"]').style.display =
           'none';
+        document
+          .querySelector('.option[data-value="date"]')
+          .setAttribute('tabindex', '-1');
+
+        // show the popularity option and make it focusable.
         document.querySelector(
           '.option[data-value="popularity"]'
         ).style.display = 'block';
+        document
+          .querySelector('.option[data-value="popularity"]')
+          .setAttribute('tabindex', '0');
+        document
+          .querySelector('.option[data-value="popularity"]')
+          .setAttribute('aria-label', 'Trier par popularité');
+
+        // show the title option and make it focusable.
         document.querySelector('.option[data-value="title"]').style.display =
           'block';
+        document
+          .querySelector('.option[data-value="title"]')
+          .setAttribute('tabindex', '0');
+        document
+          .querySelector('.option[data-value="title"]')
+          .setAttribute('aria-label', 'Trier par titre');
         break;
 
       case 'title':
+        // update the content and attributes of the selected element to reflect title.
         selectedOptionElem.textContent = 'Titre';
         selectedOptionElem.dataset.value = 'title';
+        selectedOptionElem.setAttribute('aria-label', 'Trier par titre');
 
+        // hide the title option since it's already selected.
         document.querySelector('.option[data-value="title"]').style.display =
           'none';
+        document
+          .querySelector('.option[data-value="title"]')
+          .setAttribute('tabindex', '-1');
+
+        // show the date option and make it focusable.
         document.querySelector('.option[data-value="date"]').style.display =
           'block';
+        document
+          .querySelector('.option[data-value="date"]')
+          .setAttribute('tabindex', '0');
+        document
+          .querySelector('.option[data-value="date"]')
+          .setAttribute('aria-label', 'Trier par date');
+
+        // show the popularity option and make it focusable.
         document.querySelector(
           '.option[data-value="popularity"]'
         ).style.display = 'block';
+        document
+          .querySelector('.option[data-value="popularity"]')
+          .setAttribute('tabindex', '0');
+        document
+          .querySelector('.option[data-value="popularity"]')
+          .setAttribute('aria-label', 'Trier par popularité');
         break;
     }
     // perform the sort operation based on the clicked value
