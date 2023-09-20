@@ -390,6 +390,8 @@ form textarea {
 #submit_button {
   margin-bottom: 30px;
   border: 1px solid transparent;
+  top: 0px;
+  left: 0px;
 }
 
 #submit_button:hover,
