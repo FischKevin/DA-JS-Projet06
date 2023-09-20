@@ -78,7 +78,7 @@ export function mediaFactory(data) {
       pictureLikes.className = 'nblikes';
       pictureLikes.textContent = likes;
       pictureLikes.style.marginLeft = '10px';
-      const heart = document.createElement('i');
+      const heart = document.createElement('span');
       heart.classList.add('fa-solid', 'fa-heart', 'likeHeart');
       heart.style.fontSize = '22px';
       heart.style.margin = '4px 0 0 5px';

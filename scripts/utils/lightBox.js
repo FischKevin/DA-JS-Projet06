@@ -11,7 +11,7 @@ export function showMediaInLightbox(src, title, type = 'image') {
   lightBoxModal.setAttribute('role', 'modal');
   lightBoxModal.setAttribute('id', 'lightBox');
   lightBoxModal.className = 'lightBox_Modal';
-  const lightBoxModalClose = document.createElement('i');
+  const lightBoxModalClose = document.createElement('span');
   lightBoxModalClose.className = 'lightBoxModalClose';
   lightBoxModalClose.setAttribute('id', 'lightBoxModalClose');
   lightBoxModalClose.setAttribute('role', 'button');
@@ -21,7 +21,7 @@ export function showMediaInLightbox(src, title, type = 'image') {
   lightBoxModalClose.classList.add('fa-close');
   const lightBoxContent = document.createElement('div');
   lightBoxContent.className = 'lightBoxContent';
-  const lightBoxPrev = document.createElement('i');
+  const lightBoxPrev = document.createElement('span');
   lightBoxPrev.className = 'lightBoxPrev';
   lightBoxPrev.classList.add('fa-solid');
   lightBoxPrev.classList.add('fa-chevron-left');
@@ -56,7 +56,7 @@ export function showMediaInLightbox(src, title, type = 'image') {
   lightBoxPictureCaption.className = 'lightBoxPictureCaption';
   lightBoxPictureCaption.setAttribute('tabindex', '0');
   lightBoxPictureCaption.setAttribute('role', 'button');
-  const lightBoxNext = document.createElement('i');
+  const lightBoxNext = document.createElement('span');
   lightBoxNext.className = 'lightBoxNext';
   lightBoxNext.classList.add('fa-solid');
   lightBoxNext.classList.add('fa-chevron-right');
