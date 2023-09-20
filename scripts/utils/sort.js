@@ -149,7 +149,7 @@ document.querySelectorAll('.option').forEach((optionElement) => {
   });
 });
 
-// // handle option selection on keyboard event
+// handle keyboard navigation within the sort menu using arrow keys
 document.querySelectorAll('.option').forEach((optionElement) => {
   optionElement.addEventListener('keydown', (event) => {
     let sortOptionsArray = Array.from(sortOptions);
@@ -173,7 +173,7 @@ document.querySelectorAll('.option').forEach((optionElement) => {
   });
 });
 
-// close sort menu on escape key
+// close the sort menu when the 'Escape' key is pressed
 document
   .querySelector('.custom-select')
   .addEventListener('keydown', (event) => {
