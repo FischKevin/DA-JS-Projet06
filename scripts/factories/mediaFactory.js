@@ -1,18 +1,23 @@
 import { showMediaInLightbox } from '../utils/lightBox.js';
 import { likeMedia } from '../utils/likes.js';
 
-//function to create media objects
+// factory function to create media objects based on provided data
 export function mediaFactory(data) {
+  // destructure relevant fields from the provided data object
   const { photographerId, title, image, video, likes, index } = data;
 
+  // define media paths
   const picture = `./assets/images/photographers/${photographerId}/${image}`;
   const film = `./assets/images/photographers/${photographerId}/${video}`;
 
   return {
+    // creates a DOM representation for the media (image or video)
     getMediaCardDOM: function () {
       const article = document.createElement('figure');
 
+      // check if the media is a video
       if (video) {
+        // video related DOM operations
         const vid = document.createElement('video');
         vid.setAttribute('src', film);
         vid.setAttribute('title', title);
@@ -33,6 +38,7 @@ export function mediaFactory(data) {
         });
         article.appendChild(vid);
       } else {
+        // image related DOM operations
         const img = document.createElement('img');
         img.setAttribute('src', picture);
         img.setAttribute('alt', title);
@@ -52,6 +58,7 @@ export function mediaFactory(data) {
         article.appendChild(img);
       }
 
+      // create the title and likes section beneath the media
       const divTitleLikes = document.createElement('div');
       divTitleLikes.className = 'div-title-likes';
       divTitleLikes.style.display = 'flex';
@@ -86,6 +93,7 @@ export function mediaFactory(data) {
         }
       });
 
+      // assemble the elements
       divTitleLikes.appendChild(pictureTitle);
       likesAndHeart.appendChild(pictureLikes);
       likesAndHeart.appendChild(heart);
