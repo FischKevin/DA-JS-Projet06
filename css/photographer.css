@@ -28,28 +28,32 @@
 
 .photograph-header .photographInfo {
   position: relative;
-  bottom: 140px;
+  bottom: 180px;
   margin-left: 30px;
   width: 40%;
 }
 
-.photograph-header h2 {
+.photograph-header h1 {
   color: #d3573c;
   font-size: clamp(32px, 4vw, 64px);
   font-weight: 400;
+  height: 35px;
+  width: 95%;
 }
 
-.photograph-header h3 {
+.photograph-header h2 {
   color: var(--primary-color);
   font-size: clamp(12px, 2vw, 24px);
   font-weight: 400;
+  height: 24px;
 }
 
-.photograph-header h4 {
+.photograph-header h3 {
   color: #525252;
   font-size: clamp(9px, 1.5vw, 18px);
   font-weight: 400;
-  margin-top: 15px;
+  margin-top: 20px;
+  height: 18px;
 }
 
 #media-section {
@@ -131,8 +135,8 @@
 }
 
 .custom-select {
-  position: relative;
-  bottom: 90px;
+  position: absolute;
+  bottom: -70px;
   display: flex;
   z-index: 50;
 }
@@ -257,6 +261,9 @@
   border-radius: 5px;
   cursor: pointer;
   transition: .15s ease-out;
+  position: relative;
+  left: calc(50% - 85px);
+  bottom: 255px;
 }
 
 .contact_button:hover,
@@ -265,12 +272,6 @@
   background-color: #DB8876;
   transition: .15s ease-in;
   outline: none;
-}
-
-.photograph-header .contact_button {
-  position: relative;
-  left: calc(50% - 85px);
-  bottom: 235px;
 }
 
 #contact_modal,
