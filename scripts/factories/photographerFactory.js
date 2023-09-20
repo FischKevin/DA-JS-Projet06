@@ -15,16 +15,13 @@ export function photographerFactory(data) {
       const pictureLink = document.createElement('a');
       pictureLink.setAttribute('href', `./photographer.html?id=${id}`);
       pictureLink.setAttribute('aria-label', `${name}`);
-      pictureLink.setAttribute('tabindex', '-1');
       // create a wrapper for resizing and positioning the portrait
       const wrapper = document.createElement('div');
       wrapper.classList.add('wrapper');
-      wrapper.setAttribute('tabindex', '0');
-      wrapper.setAttribute('role', 'link');
       // create the portrait image of the photographer
       const img = document.createElement('img');
       img.setAttribute('src', picture);
-      img.setAttribute('alt', `${name}`);
+      img.setAttribute('alt', `Page de ${name}`);
       img.setAttribute('aria-label', `Page de ${name}`);
       // create the block for the photographer's name
       const h2 = document.createElement('h2');
