@@ -250,6 +250,16 @@ document.querySelectorAll('.option').forEach((optionElement) => {
   });
 });
 
+// close the sort menu when the user clicks outside of it
+document.addEventListener('click', (event) => {
+  if (!document.querySelector('.custom-select').contains(event.target)) {
+    const sortBlockOptions = document.querySelector('.options');
+    if (sortBlockOptions.style.display === 'block') {
+      displaySortMenu();
+    }
+  }
+});
+
 // close the sort menu when the 'Escape' key is pressed
 document
   .querySelector('.custom-select')
