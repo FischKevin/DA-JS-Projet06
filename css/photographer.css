@@ -482,8 +482,3 @@ form textarea {
   padding: 1px 5px;
   transition: .15s ease-in;
 }
-
-/* .lightBoxPictureCaption:focus-visible {
-  outline: 2px solid var(--secondary-color);
-  transition: .15s ease-out;
-} */

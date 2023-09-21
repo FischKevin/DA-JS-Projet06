@@ -9,15 +9,19 @@ function displaySortMenu() {
   // check if the sort options are currently visible
   if (sortBlockOptions.style.display === 'block') {
     sortBlockOptions.style.display = 'none';
+    sortBlockOptions.style.visibility = 'hidden';
     sortBlockOptions.classList.remove('open');
     selectedOption.classList.remove('open');
     selectedOption.setAttribute('aria-expanded', 'false');
   } else {
     sortBlockOptions.style.display = 'block';
+    sortBlockOptions.style.visibility = 'visible';
     sortBlockOptions.classList.add('open');
     selectedOption.classList.add('open');
     selectedOption.setAttribute('aria-expanded', 'true');
   }
+  // focus on the selected option
+  selectedOption.focus();
 }
 
 // handle the selection of a sort option and triggers the sort operation
@@ -30,7 +34,6 @@ function handleOptionClick(event) {
   clickedOption.textContent = tempText;
   // extract the desired sorting criteria from the clicked option
   const sortingCriteria = clickedOption.dataset.value;
-
   // perform the sort operation
   sortAndDisplayMedia(sortingCriteria);
 
@@ -55,21 +58,20 @@ document.querySelector('.custom-select').addEventListener('click', (event) => {
   if (event.target.classList.contains('option')) {
     const selectedOptionElem = document.querySelector('.selected-option');
     const clickedValue = event.target.dataset.value;
-
     // restore original text content for each option
     document.querySelectorAll('.option').forEach((option) => {
       option.textContent = option.getAttribute('data-original-content');
     });
 
-    // depending on the clicked value (clickedValue), adjust the content, attributes, and visibility of the corresponding elements.
+    // depending on the clicked value (clickedValue), adjust the content, attributes, and visibility of the corresponding elements
     switch (clickedValue) {
       case 'popularity':
-        // update the content and attributes of the selected element to reflect popularity.
+        // update the content and attributes of the selected element to reflect popularity
         selectedOptionElem.textContent = 'Popularité';
         selectedOptionElem.dataset.value = 'popularity';
         selectedOptionElem.setAttribute('aria-label', 'Trier par popularité');
 
-        // hide the popularity option since it's already selected.
+        // hide the popularity option since it's already selected
         document.querySelector(
           '.option[data-value="popularity"]'
         ).style.display = 'none';
@@ -77,7 +79,7 @@ document.querySelector('.custom-select').addEventListener('click', (event) => {
           .querySelector('.option[data-value="popularity"]')
           .setAttribute('tabindex', '-1');
 
-        // show the date option and make it focusable.
+        // show the date option and make it focusable
         document.querySelector('.option[data-value="date"]').style.display =
           'block';
         document
@@ -87,7 +89,7 @@ document.querySelector('.custom-select').addEventListener('click', (event) => {
           .querySelector('.option[data-value="date"]')
           .setAttribute('aria-label', 'Trier par date');
 
-        // show the title option and make it focusable.
+        // show the title option and make it focusable
         document.querySelector('.option[data-value="title"]').style.display =
           'block';
         document
@@ -99,19 +101,19 @@ document.querySelector('.custom-select').addEventListener('click', (event) => {
         break;
 
       case 'date':
-        // update the content and attributes of the selected element to reflect date.
+        // update the content and attributes of the selected element to reflect date
         selectedOptionElem.textContent = 'Date';
         selectedOptionElem.dataset.value = 'date';
         selectedOptionElem.setAttribute('aria-label', 'Trier par date');
 
-        // hide the date option since it's already selected.
+        // hide the date option since it's already selected
         document.querySelector('.option[data-value="date"]').style.display =
           'none';
         document
           .querySelector('.option[data-value="date"]')
           .setAttribute('tabindex', '-1');
 
-        // show the popularity option and make it focusable.
+        // show the popularity option and make it focusable
         document.querySelector(
           '.option[data-value="popularity"]'
         ).style.display = 'block';
@@ -122,7 +124,7 @@ document.querySelector('.custom-select').addEventListener('click', (event) => {
           .querySelector('.option[data-value="popularity"]')
           .setAttribute('aria-label', 'Trier par popularité');
 
-        // show the title option and make it focusable.
+        // show the title option and make it focusable
         document.querySelector('.option[data-value="title"]').style.display =
           'block';
         document
@@ -134,19 +136,19 @@ document.querySelector('.custom-select').addEventListener('click', (event) => {
         break;
 
       case 'title':
-        // update the content and attributes of the selected element to reflect title.
+        // update the content and attributes of the selected element to reflect title
         selectedOptionElem.textContent = 'Titre';
         selectedOptionElem.dataset.value = 'title';
         selectedOptionElem.setAttribute('aria-label', 'Trier par titre');
 
-        // hide the title option since it's already selected.
+        // hide the title option since it's already selected
         document.querySelector('.option[data-value="title"]').style.display =
           'none';
         document
           .querySelector('.option[data-value="title"]')
           .setAttribute('tabindex', '-1');
 
-        // show the date option and make it focusable.
+        // show the date option and make it focusable
         document.querySelector('.option[data-value="date"]').style.display =
           'block';
         document
@@ -156,7 +158,7 @@ document.querySelector('.custom-select').addEventListener('click', (event) => {
           .querySelector('.option[data-value="date"]')
           .setAttribute('aria-label', 'Trier par date');
 
-        // show the popularity option and make it focusable.
+        // show the popularity option and make it focusable
         document.querySelector(
           '.option[data-value="popularity"]'
         ).style.display = 'block';
@@ -174,17 +176,28 @@ document.querySelector('.custom-select').addEventListener('click', (event) => {
 });
 
 // sort the media data based on the given criteria and displays the sorted media
-function sortAndDisplayMedia(criteria) {
+function sortMedia(criteria) {
   // sort the media based on the specified criteria
-  if (criteria === 'popularity') {
-    globalState.media.sort((a, b) => b.likes - a.likes);
-  } else if (criteria === 'date') {
-    globalState.media.sort((a, b) => new Date(b.date) - new Date(a.date));
-  } else if (criteria === 'title') {
-    globalState.media.sort((a, b) => a.title.localeCompare(b.title));
+  switch (criteria) {
+    case 'popularity':
+      return globalState.media.sort((a, b) => b.likes - a.likes);
+    case 'date':
+      return globalState.media.sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+      );
+    case 'title':
+      return globalState.media.sort((a, b) => a.title.localeCompare(b.title));
+    default:
+      console.error('Unknown sorting criteria:', criteria);
+      // Return the unsorted media if criteria is unrecognized
+      return globalState.media;
   }
-  // display the sorted media
-  displayMediaData(globalState.media);
+}
+
+// sort and display the media based on the given criteria
+export function sortAndDisplayMedia(criteria) {
+  const sortedMedia = sortMedia(criteria);
+  displayMediaData(sortedMedia);
 }
 
 // add keyboard support for toggling the sort menu
@@ -225,13 +238,11 @@ document.querySelectorAll('.option').forEach((optionElement) => {
 
     if (event.key === 'ArrowDown') {
       event.preventDefault();
-      console.log('ArrowDown pressed');
       if (currentIndex < sortOptionsArray.length - 1) {
         sortOptionsArray[currentIndex + 1].focus();
       }
     } else if (event.key === 'ArrowUp') {
       event.preventDefault();
-      console.log('ArrowUp pressed');
       if (currentIndex > 0) {
         sortOptionsArray[currentIndex - 1].focus();
       }

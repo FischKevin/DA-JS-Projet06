@@ -1,5 +1,3 @@
-import { getPhotographer } from '../pages/photographer.js';
-
 // initial setup when the document is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
   // get DOM elements related to the contact form
@@ -20,13 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.setAttribute('aria-hidden', 'false');
     firstName.focus();
 
-    // fetch photographer's name and update modal's title
+    // get photographer's name and update modal's title
     const contactTitleWording = document.getElementById(
       'contact-title-wording2'
     );
-    const data = await getPhotographer();
-    const photographer = data.photographer;
-    contactTitleWording.innerText = `${photographer.name}`;
+    const displayedPhotographerName =
+      document.getElementById('photographName').textContent;
+    contactTitleWording.innerText = displayedPhotographerName;
   }
 
   // close the contact modal and clear the form fields
